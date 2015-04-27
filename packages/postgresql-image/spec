@@ -1,0 +1,4 @@
+---
+name: postgresql-image
+dependencies: []
+files: [postgresql-image/*.tgz]
