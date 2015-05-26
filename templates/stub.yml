@@ -10,5 +10,7 @@ meta:
 director_uuid: PLACEHOLDER-DIRECTOR-UUID
 
 releases:
+  - name: docker
+    version: latest
   - name: postgresql-docker
     version: latest

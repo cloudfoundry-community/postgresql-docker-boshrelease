@@ -1,6 +1,6 @@
 ---
 name: postgresql-docker
-packages: []
+packages: [postgresql-image]
 templates:
   bin/monit_debugger: bin/monit_debugger
   bin/postgresql_docker_ctl: bin/postgresql_docker_ctl

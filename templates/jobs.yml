@@ -9,24 +9,18 @@ update:
   serial: false
 
 jobs:
-  - name: postgresql_docker_leader_z1
-    template: postgresql-docker
-    instances: 0
-    resource_pool: small_z1
-    networks: (( merge ))
-    persistent_disk: 0
-    properties: {}
   - name: postgresql_docker_z1
-    template: postgresql-docker
-    instances: 0
+    templates:
+      - name: docker
+        release: docker
+      - name: postgresql-docker
+        release: postgresql-docker
+    instances: 1
     resource_pool: small_z1
     networks: (( merge ))
     persistent_disk: 0
     update:
       canaries: 10
-    properties:
-      postgresql_docker:
-        leader_address: (( merge ))
 
 networks: (( merge ))
 

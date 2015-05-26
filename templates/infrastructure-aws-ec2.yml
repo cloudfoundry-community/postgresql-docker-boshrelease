@@ -9,19 +9,11 @@ meta:
     version: latest
 
 jobs:
-  - name: postgresql_docker_leader_z1
+  - name: postgresql_docker_z1
     instances: 1
     networks:
       - name: postgresql_docker1
     persistent_disk: (( meta.persistent_disk ))
-  - name: postgresql_docker_z1
-    instances: 2
-    networks:
-      - name: postgresql_docker1
-    persistent_disk: (( meta.persistent_disk ))
-    properties:
-      postgresql_docker:
-        leader_address: (( "0.postgresql-docker-leader-z1.postgresql-docker1." meta.environment "." meta.dns_root ))
 
 compilation:
   cloud_properties:

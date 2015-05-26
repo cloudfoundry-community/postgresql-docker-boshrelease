@@ -1,5 +1,7 @@
+<% if false %>
 check process postgresql_docker
   with pidfile /var/vcap/sys/run/postgresql_docker/postgresql_docker.pid
   start program "/var/vcap/jobs/postgresql_docker/bin/monit_debugger postgresql_docker_ctl '/var/vcap/jobs/postgresql_docker/bin/postgresql_docker_ctl start'"
   stop program "/var/vcap/jobs/postgresql_docker/bin/monit_debugger postgresql_docker_ctl '/var/vcap/jobs/postgresql_docker/bin/postgresql_docker_ctl stop'"
   group vcap
+<% end %>

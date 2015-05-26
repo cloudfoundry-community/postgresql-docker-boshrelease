@@ -12,19 +12,10 @@ update:
   update_watch_time: 1000-30000
 
 jobs:
-  - name: postgresql_docker_leader_z1
-    instances: 1
-    networks:
-      - name: postgresql_docker1
-        static_ips: (( static_ips(0) ))
   - name: postgresql_docker_z1
-    instances: 2
     networks:
       - name: postgresql_docker1
         static_ips: ~
-    properties:
-      postgresql_docker:
-        leader_address: (( jobs.postgresql_docker_leader_z1.networks.postgresql_docker1.static_ips.[0] ))
 
 compilation:
   cloud_properties:
