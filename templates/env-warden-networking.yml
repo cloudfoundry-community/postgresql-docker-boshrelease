@@ -6,51 +6,51 @@ meta:
   subnets:
   - cloud_properties:
       name: random
-    range: 10.244.18.0/30
+    range: 10.244.20.0/30
     reserved:
-    - 10.244.18.1
+    - 10.244.20.1
     static:
-    - 10.244.18.2
+    - 10.244.20.2
   - cloud_properties:
       name: random
-    range: 10.244.18.4/30
+    range: 10.244.20.4/30
     reserved:
-    - 10.244.18.5
+    - 10.244.20.5
     static:
-    - 10.244.18.6
+    - 10.244.20.6
   - cloud_properties:
       name: random
-    range: 10.244.18.8/30
+    range: 10.244.20.8/30
     reserved:
-    - 10.244.18.9
+    - 10.244.20.9
     static: []
   - cloud_properties:
       name: random
-    range: 10.244.18.12/30
+    range: 10.244.20.12/30
     reserved:
-    - 10.244.18.13
+    - 10.244.20.13
     static: []
   - cloud_properties:
       name: random
-    range: 10.244.18.16/30
+    range: 10.244.20.16/30
     reserved:
-    - 10.244.18.17
+    - 10.244.20.17
     static: []
   - cloud_properties:
       name: random
-    range: 10.244.18.20/30
+    range: 10.244.20.20/30
     reserved:
-    - 10.244.18.21
+    - 10.244.20.21
     static: []
   - cloud_properties:
       name: random
-    range: 10.244.18.24/30
+    range: 10.244.20.24/30
     reserved:
-    - 10.244.18.25
+    - 10.244.20.25
     static: []
   - cloud_properties:
       name: random
-    range: 10.244.18.28/30
+    range: 10.244.20.28/30
     reserved:
-    - 10.244.18.29
+    - 10.244.20.29
     static: []
