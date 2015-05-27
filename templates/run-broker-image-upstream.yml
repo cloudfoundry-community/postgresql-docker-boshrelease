@@ -42,7 +42,7 @@ properties:
     max_containers: (( meta.cfcontainersbroker.max_containers ))
 
     services:
-      - id: 'e72113ed-fde7-45fd-8758-aff41e6c5507'
+      - id: '2a80a8a6-047f-11e5-a549-6c4008a663f0'
         name: 'postgresql14'
         description: 'postgresql 1.4 service for application development and testing'
         bindable: true
@@ -64,7 +64,7 @@ properties:
           secret: 'p-postgresql14-secret'
           redirect_uri: (( meta.cfcontainersbroker.protocol "://" meta.cfcontainersbroker.external_host "/manage/auth/cloudfoundry/callback" ))
         plans:
-          - id: '5218782d-7fab-4534-92b8-434204d88c7b'
+          - id: '40f402e0-047f-11e5-88d5-6c4008a663f0'
             name: 'free'
             container:
               backend: 'docker'
