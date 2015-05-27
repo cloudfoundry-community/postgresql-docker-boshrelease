@@ -19,7 +19,7 @@ case $1 in
 
     time docker \
       --host unix:///var/vcap/sys/run/docker/docker.sock \
-      load -i /var/vcap/packages/postgresql/frodenas_postgresql.tgz
+      load -i /var/vcap/packages/postgresql-image/frodenas-postgresql.tgz
         >>$LOG_DIR/$JOB_NAME.stdout.log \
         2>>$LOG_DIR/$JOB_NAME.stderr.log
 
