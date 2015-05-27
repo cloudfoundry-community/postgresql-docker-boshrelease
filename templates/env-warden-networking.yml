@@ -1,0 +1,56 @@
+meta:
+  security_groups:
+  - default
+  # Assumes up to 5 VMs, including 1 static and 4 dynamic.
+  # Plus 5 (double the size) unused IPs, due to BOSH bug/quirk.
+  subnets:
+  - cloud_properties:
+      name: random
+    range: 10.244.18.0/30
+    reserved:
+    - 10.244.18.1
+    static:
+    - 10.244.18.2
+  - cloud_properties:
+      name: random
+    range: 10.244.18.4/30
+    reserved:
+    - 10.244.18.5
+    static:
+    - 10.244.18.6
+  - cloud_properties:
+      name: random
+    range: 10.244.18.8/30
+    reserved:
+    - 10.244.18.9
+    static: []
+  - cloud_properties:
+      name: random
+    range: 10.244.18.12/30
+    reserved:
+    - 10.244.18.13
+    static: []
+  - cloud_properties:
+      name: random
+    range: 10.244.18.16/30
+    reserved:
+    - 10.244.18.17
+    static: []
+  - cloud_properties:
+      name: random
+    range: 10.244.18.20/30
+    reserved:
+    - 10.244.18.21
+    static: []
+  - cloud_properties:
+      name: random
+    range: 10.244.18.24/30
+    reserved:
+    - 10.244.18.25
+    static: []
+  - cloud_properties:
+      name: random
+    range: 10.244.18.28/30
+    reserved:
+    - 10.244.18.29
+    static: []

@@ -1,8 +1,8 @@
 meta:
-  environment: (( merge ))
+  name: (( merge ))
   stemcell: (( merge ))
 
-name: (( meta.environment ))
+name: (( meta.name ))
 
 director_uuid: (( merge ))
 

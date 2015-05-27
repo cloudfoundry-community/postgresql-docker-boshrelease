@@ -1,5 +1,5 @@
 meta:
-  environment: ~
+  job_templates: (( merge ))
 
 update:
   canaries: 1
@@ -10,18 +10,10 @@ update:
 
 jobs:
   - name: postgresql_docker_z1
-    templates:
-      - name: docker
-        release: docker
-      - name: postgresql-docker
-        release: postgresql-docker
+    templates: (( meta.job_templates ))
     instances: 1
     resource_pool: small_z1
     networks: (( merge ))
-    persistent_disk: 0
-    update:
-      canaries: 10
+    persistent_disk: 10240
 
 networks: (( merge ))
-
-properties: {}

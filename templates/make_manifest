@@ -1,19 +1,28 @@
 #!/bin/bash
 
+infrastructure=$1; shift
+runner=$1; shift
+docker_image=$1; shift
 set -e
 
 template_prefix="postgresql-docker"
 STEMCELL_OS=${STEMCELL_OS:-ubuntu}
 
-infrastructure=$1
+usage() {
+  echo "usage: ./make_manifest <aws-ec2|warden> <container|broker> [<embedded|upstream>]"
+  exit 1
+}
 
 if [ "$infrastructure" != "aws-ec2" ] && \
     [ "$infrastructure" != "warden" ] ; then
-  echo "usage: ./make_manifest <aws-ec2|warden>"
-  exit 1
+  usage
 fi
 
-shift
+if [ "$runner" != "container" ] && \
+    [ "$runner" != "broker" ] ; then
+  usage
+fi
+docker_image=${docker_image:="embedded"}
 
 BOSH_STATUS=$(bosh status)
 DIRECTOR_UUID=$(echo "$BOSH_STATUS" | grep UUID | awk '{print $2}')
@@ -53,18 +62,31 @@ release=$templates/..
 tmpdir=$release/tmp
 
 mkdir -p $tmpdir
-cp $templates/stub.yml $tmpdir/stub-with-uuid.yml
+cp $templates/env-director-stub.yml $tmpdir/director.yml
+cp $templates/env-name-stub.yml $tmpdir/name.yml
+cp $templates/manifest-pipeline-inputs-stub.yml $tmpdir/pipeline-inputs.yml
 echo $DIRECTOR_NAME $DIRECTOR_CPI $DIRECTOR_UUID $STEMCELL
-perl -pi -e "s/PLACEHOLDER-DIRECTOR-UUID/$DIRECTOR_UUID/g" $tmpdir/stub-with-uuid.yml
-perl -pi -e "s/NAME/$NAME/g" $tmpdir/stub-with-uuid.yml
-perl -pi -e "s/STEMCELL/$STEMCELL/g" $tmpdir/stub-with-uuid.yml
+perl -pi -e "s/PLACEHOLDER-DIRECTOR-UUID/$DIRECTOR_UUID/g" $tmpdir/director.yml
+perl -pi -e "s/NAME/$NAME/g" $tmpdir/name.yml
+perl -pi -e "s/STEMCELL/$STEMCELL/g" $tmpdir/pipeline-inputs.yml
 
 spiff merge \
   $templates/deployment.yml \
   $templates/jobs.yml \
+  $templates/run-${runner}-image-${docker_image}.yml \
   $templates/infrastructure-${infrastructure}.yml \
-  $tmpdir/stub-with-uuid.yml \
+  $templates/env-${infrastructure}-networking.yml \
+  $templates/env-${infrastructure}-scaling.yml \
+  $tmpdir/director.yml \
+  $tmpdir/name.yml \
+  $tmpdir/pipeline-inputs.yml \
   $* > $tmpdir/$NAME-manifest.yml
 
-bosh deployment $tmpdir/$NAME-manifest.yml
+if [[ "$(which humanize-manifest)X" != "X" ]]; then
+  humanize-manifest $tmpdir/$NAME-manifest.yml > $tmpdir/humanized-manifest.yml
+  bosh deployment $tmpdir/humanized-manifest.yml
+else
+  bosh deployment $tmpdir/$NAME-manifest.yml
+fi
+
 bosh status

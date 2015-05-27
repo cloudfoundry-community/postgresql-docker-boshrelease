@@ -1,8 +1,17 @@
 meta:
-  environment: postgresql-docker-warden
+  subnets: (( merge ))
+  cfcontainersbroker:
+    cc_api_uri: "https://api.10.244.0.34.xip.io"
+    external_host: "cf-containers-broker.10.244.0.34.xip.io"
+  nats:
+    user: nats
+    password: nats
+    port: 4222
+    machines:
+      - 10.244.0.6
 
   stemcell:
-    name: bosh-warden-boshlite-ubuntu
+    name: bosh-warden-boshlite-ubuntu-trusty-go_agent
     version: latest
 
 update:
@@ -25,73 +34,9 @@ resource_pools:
   - name: small_z1
     cloud_properties:
       name: random
+    stemcell: (( meta.stemcell ))
 
 networks:
 - name: postgresql_docker1
-  # Assumes up to 5 VMs, including 1 static and 4 dynamic.
-  # Plus 5 (double the size) unused IPs, due to BOSH bug/quirk.
-  subnets:
-  - cloud_properties:
-      name: random
-    range: 10.244.2.0/30
-    reserved:
-    - 10.244.2.1
-    static:
-    - 10.244.2.2
-
-  - cloud_properties:
-      name: random
-    range: 10.244.2.4/30
-    reserved:
-    - 10.244.2.5
-    static: []
-  - cloud_properties:
-      name: random
-    range: 10.244.2.8/30
-    reserved:
-    - 10.244.2.9
-    static: []
-  - cloud_properties:
-      name: random
-    range: 10.244.2.12/30
-    reserved:
-    - 10.244.2.13
-    static: []
-  - cloud_properties:
-      name: random
-    range: 10.244.2.16/30
-    reserved:
-    - 10.244.2.17
-    static: []
-
-  # Bonus double-sized network required due to BOSH oddity
-  - cloud_properties:
-      name: random
-    range: 10.244.2.20/30
-    reserved:
-    - 10.244.2.21
-    static: []
-  - cloud_properties:
-      name: random
-    range: 10.244.2.24/30
-    reserved:
-    - 10.244.2.25
-    static: []
-  - cloud_properties:
-      name: random
-    range: 10.244.2.28/30
-    reserved:
-    - 10.244.2.29
-    static: []
-  - cloud_properties:
-      name: random
-    range: 10.244.2.32/30
-    reserved:
-    - 10.244.2.33
-    static: []
-  - cloud_properties:
-      name: random
-    range: 10.244.2.36/30
-    reserved:
-    - 10.244.2.37
-    static: []
+  type: manual
+  subnets: (( meta.subnets ))

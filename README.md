@@ -1,6 +1,8 @@
-# BOSH Release for postgresql-docker
+BOSH Release for PostgreSQL via Docker
+======================================
 
-## Usage
+Usage
+-----
 
 To use this bosh release, first upload it to your bosh:
 
@@ -31,7 +33,7 @@ For AWS & Openstack, the default deployment assumes there is a `default` securit
 
 Create a file `my-networking.yml`:
 
-``` yaml
+```yaml
 ---
 networks:
   - name: postgresql-docker1

@@ -10,7 +10,6 @@ meta:
 
 jobs:
   - name: postgresql_docker_z1
-    instances: 1
     networks:
       - name: postgresql_docker1
     persistent_disk: (( meta.persistent_disk ))
