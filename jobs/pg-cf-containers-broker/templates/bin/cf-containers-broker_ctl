@@ -3,7 +3,7 @@
 set -e # exit immediately if a simple command exits with a non-zero status
 
 # Setup common env vars and folders
-source /var/vcap/packages/bosh-helpers/ctl_setup.sh 'cf-containers-broker'
+source /var/vcap/packages/pg-bosh-helpers/ctl_setup.sh 'pg-cf-containers-broker'
 export CF_CONTAINERS_BROKER_PID_FILE=${CF_CONTAINERS_BROKER_PID_DIR}/cf-containers-broker.pid
 
 # Set the hostname

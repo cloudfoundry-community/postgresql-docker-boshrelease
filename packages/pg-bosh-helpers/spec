@@ -1,5 +1,5 @@
 ---
-name: bosh-helpers
+name: pg-bosh-helpers
 dependencies: {}
 files:
   - bosh-helpers/*

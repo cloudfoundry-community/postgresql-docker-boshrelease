@@ -1,6 +1,6 @@
 ---
-name: cf-containers-broker
+name: pg-cf-containers-broker
 dependencies:
-  - ruby
+  - pg-ruby
 files:
   - cf-containers-broker/**/*

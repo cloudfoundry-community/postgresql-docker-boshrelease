@@ -1,5 +1,5 @@
 ---
-name: ruby
+name: pg-ruby
 dependencies: {}
 files:
   - ruby/ruby-2.1.5.tar.gz

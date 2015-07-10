@@ -3,7 +3,7 @@
 set -e # exit immediately if a simple command exits with a non-zero status
 
 # Setup common env vars and folders
-source /var/vcap/packages/bosh-helpers/ctl_setup.sh 'cf-containers-broker' 'cf-containers-broker_remote_syslog'
+source /var/vcap/packages/pg-bosh-helpers/ctl_setup.sh 'pg-cf-containers-broker' 'pg-cf-containers-broker_remote_syslog'
 export REMOTE_SYSLOG_PID_FILE=${REMOTE_SYSLOG_PID_DIR}/remote_syslog.pid
 
 # Set the hostname

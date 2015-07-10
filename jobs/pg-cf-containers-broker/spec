@@ -1,11 +1,11 @@
 ---
-name: cf-containers-broker
+name: pg-cf-containers-broker
 
 packages:
-  - bosh-helpers
-  - ruby
-  - cf-containers-broker
-  - remote_syslog
+  - pg-bosh-helpers
+  - pg-ruby
+  - pg-cf-containers-broker
+  - pg-remote_syslog
 
 templates:
   bin/cf-containers-broker_ctl: bin/cf-containers-broker_ctl

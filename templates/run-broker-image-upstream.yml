@@ -22,7 +22,7 @@ meta:
     - {name: docker, release: docker}
     # do not run frodenas_postgresql_image template that installs embedded docker image
     # run service broker
-    - {name: cf-containers-broker, release: postgresql-docker}
+    - {name: pg-cf-containers-broker, release: postgresql-docker}
 
 releases:
 - name: docker

@@ -1,0 +1,1 @@
+<%= p('cfcontainersbroker.logrotate.frequency') %> test -x /usr/sbin/logrotate && /usr/sbin/logrotate --state /var/vcap/sys/tmp/pg-cf-containers-broker/logrotate.status /var/vcap/jobs/pg-cf-containers-broker/config/logrotate.conf >>/var/vcap/sys/log/pg-cf-containers-broker/logrotate_cron.log 2>&1
