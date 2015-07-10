@@ -1,0 +1,5 @@
+---
+name: pg-bosh-helpers
+dependencies: {}
+files:
+  - bosh-helpers/*

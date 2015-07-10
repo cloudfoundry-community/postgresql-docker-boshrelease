@@ -20,7 +20,7 @@ meta:
     # warm docker image cache from bosh package
     - {name: frodenas_postgresql_image, release: postgresql-docker}
     # run service broker
-    - {name: cf-containers-broker, release: docker}
+    - {name: pg-cf-containers-broker, release: postgresql-docker}
 
 releases:
 - name: docker
