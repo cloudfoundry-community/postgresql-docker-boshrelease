@@ -1,0 +1,45 @@
+---
+packages:
+- name: pg-bosh-helpers
+  version: 55717f488eb12fd47c95fd524ab1cd6304c7ce7e
+  fingerprint: 55717f488eb12fd47c95fd524ab1cd6304c7ce7e
+  sha1: 9945b356f74de90b06ff8b0cc777e3563bb54545
+  dependencies: []
+- name: pg-cf-containers-broker
+  version: 83803cc83146c5622b823843c8138ebbadaf2c16
+  fingerprint: 83803cc83146c5622b823843c8138ebbadaf2c16
+  sha1: e4965804d59065e49abf8719e01fdaf04b15ae86
+  dependencies:
+  - pg-ruby
+- name: pg-remote_syslog
+  version: 89692d361000e340f4a84518a14db23717665a99
+  fingerprint: 89692d361000e340f4a84518a14db23717665a99
+  sha1: 5427b6a1679b73c1fbc025133ff49567d8642a7b
+  dependencies: []
+- name: pg-ruby
+  version: d1629f30f2d54b15f06ecb5da716edcf3cc85002
+  fingerprint: d1629f30f2d54b15f06ecb5da716edcf3cc85002
+  sha1: 05b8ddd16b2b37cb85059747cc0281126d5c650b
+  dependencies: []
+- name: postgresql-image
+  version: 1ecea9678487f374d053484618bb4bd10e0917c1
+  fingerprint: 1ecea9678487f374d053484618bb4bd10e0917c1
+  sha1: ac2887f3c21a9bdfca60ad6be2be4351bd25791a
+  dependencies: []
+jobs:
+- name: frodenas_postgresql_image
+  version: 2f7a68c3b142b4951146ccfc39277003a158e829
+  fingerprint: 2f7a68c3b142b4951146ccfc39277003a158e829
+  sha1: b107fdd9822de7da6df80a88257d5d358e9e31da
+- name: pg-cf-containers-broker
+  version: 2810301196f8ab397987d41291d0e09d4889c738
+  fingerprint: 2810301196f8ab397987d41291d0e09d4889c738
+  sha1: 55f1eca3314e35882815b4fc8f01523fd0a42599
+license:
+  version: 8da6eb3df1dce64b78610e7cbaf4245d66e88f1c
+  fingerprint: 8da6eb3df1dce64b78610e7cbaf4245d66e88f1c
+  sha1: b8fe31d1c89fab9e43099c26e4e85108ddfa6643
+commit_hash: c973a81d
+uncommitted_changes: true
+name: postgresql-docker
+version: '1.1'
