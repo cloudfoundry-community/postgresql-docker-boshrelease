@@ -3,3 +3,23 @@ docker-images/frodenas-postgresql.tgz:
   object_id: 38b18f74-fc79-4d7e-bf38-5144eaeace0f
   sha: 94add5aedf11c425d411e705a9249684e9cbc88b
   size: 454837760
+remote_syslog/remote_syslog-0.13_linux_amd64.tar.gz:
+  object_id: 51521270-bed3-4790-9801-7a0a3ef64dd7
+  sha: e63564142bf6c5063fe97c64a7461aa20e39005c
+  size: 1840213
+ruby/bundler-1.8.2.gem:
+  object_id: aa169be9-4877-4b25-9fe5-5feb3222f520
+  sha: e9b810268eea94ac5e825b5ae8a2d5fd19fb5905
+  size: 235008
+ruby/ruby-2.1.5.tar.gz:
+  object_id: fa31b72d-cedc-4e21-809c-dcc2f1c20f74
+  sha: 9c0a238bd7839a4b51871641945a3da90997b8c2
+  size: 15127433
+ruby/rubygems-2.4.6.tgz:
+  object_id: e572f7f1-12df-4f23-8ff0-bdfd6c0dd858
+  sha: bf59306c0f6c37551875e70ce8ccfb1cbc60c28b
+  size: 447588
+ruby/yaml-0.1.6.tar.gz:
+  object_id: a7d012dc-cff4-4661-83c7-0d4ca8e730e0
+  sha: f3d404e11bec3c4efcddfd14c42d46f1aabe0b5d
+  size: 503012
