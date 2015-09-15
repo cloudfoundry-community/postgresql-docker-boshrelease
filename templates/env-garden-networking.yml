@@ -7,6 +7,6 @@ meta:
   # Assumes up to 5 VMs, including 1 static and 4 dynamic.
   # Plus 5 (double the size) unused IPs, due to BOSH bug/quirk.
   subnets:
-  - range: 10.244.0.0/24
-    gateway: 10.244.0.1
-    static: [10.244.0.2, 10.244.0.3, 10.244.0.4, 10.244.0.5]
+  - range: 10.244.20.0/24
+    gateway: 10.244.20.1
+    static: [10.244.20.2, 10.244.20.3, 10.244.20.4, 10.244.20.5]
