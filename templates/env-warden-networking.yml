@@ -1,4 +1,7 @@
 meta:
+  job_cloud_properties:
+    name: random
+
   security_groups:
   - default
   # Assumes up to 5 VMs, including 1 static and 4 dynamic.
