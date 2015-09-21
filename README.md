@@ -21,7 +21,7 @@ To use this BOSH release, first upload it to your bosh and the `docker` release
 
 ```
 bosh upload release https://bosh.io/d/github.com/cf-platform-eng/docker-boshrelease
-bosh upload release https://bosh.io/u/github.com/cloudfoundry-community/postgresql-docker-boshrelease
+bosh upload release https://bosh.io/d/github.com/cloudfoundry-community/postgresql-docker-boshrelease
 ```
 
 For the various Usage cases below you will need this git repo's `templates` folder:
