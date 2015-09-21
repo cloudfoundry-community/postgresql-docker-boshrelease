@@ -12,6 +12,12 @@ The PostgreSQL image can be referenced either:
 -	from an embebbed/bundled image stored with each BOSH release version
 -	from upstream and/or private registries
 
+Spiff deployment templates are included for:
+
+-	bosh-lite/garden
+-	bosh-lite/warden (older bosh-lites, deprecated)
+-	bosh/aws
+
 [Learn more](https://blog.starkandwayne.com/2015/04/28/embed-docker-into-bosh-releases/) about embedding Docker images in BOSH releases.
 
 Installation
@@ -115,31 +121,6 @@ Users can now provision PostgreSQL services and bind them to their apps.
 ```
 cf cs postgresql93 free my-pg
 cf bs my-app my-pg
-```
-
-### Override security groups
-
-For AWS & Openstack, the default deployment assumes there is a `default` security group. If you wish to use a different security group(s) then you can pass in additional configuration when running `make_manifest` above.
-
-Create a file `my-networking.yml`:
-
-```yaml
----
-networks:
-  - name: postgresql-docker1
-    type: dynamic
-    cloud_properties:
-      security_groups:
-        - postgresql-docker
-```
-
-Where `- postgresql-docker` means you wish to use an existing security group called `postgresql-docker`.
-
-You now suffix this file path to the `make_manifest` command:
-
-```
-templates/make_manifest aws-ec2 container embedded my-networking.yml
-bosh -n deploy
 ```
 
 ### Versions & configuration

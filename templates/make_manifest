@@ -9,27 +9,33 @@ template_prefix="postgresql-docker"
 STEMCELL_OS=${STEMCELL_OS:-ubuntu}
 
 usage() {
-  echo "usage: ./make_manifest <aws-ec2|garden|warden> <container|broker> [<embedded|upstream>]"
+  echo "usage: ./make_manifest <aws|garden|warden> <container|broker> <embedded|upstream>"
   exit 1
 }
 
-if [ "$infrastructure" != "aws-ec2" ] && \
+if [ "$infrastructure" != "aws" ] && \
     [ "$infrastructure" != "garden" ] && \
     [ "$infrastructure" != "warden" ] ; then
   usage
 fi
-
-if [ "$runner" != "container" ] && \
-    [ "$runner" != "broker" ] ; then
+if [ "$runner" != "container" ] && [ "$runner" != "broker" ] ; then
   usage
 fi
-docker_image=${docker_image:="embedded"}
+if [ "$docker_image" != "embedded" ] && [ "$docker_image" != "upstream" ] ; then
+  usage
+fi
 
-BOSH_STATUS=$(bosh status)
-DIRECTOR_UUID=$(echo "$BOSH_STATUS" | grep UUID | awk '{print $2}')
-DIRECTOR_CPI=$(echo "$BOSH_STATUS" | grep CPI | awk '{print $2}')
-DIRECTOR_NAME=$(echo "$BOSH_STATUS" | grep Name | awk '{print $2}')
-NAME=$template_prefix-$infrastructure
+if [[ "${DEMO}X" == "X" ]]; then
+  BOSH_STATUS=$(bosh status)
+  DIRECTOR_UUID=$(echo "$BOSH_STATUS" | grep UUID | awk '{print $2}')
+  DIRECTOR_CPI=$(echo "$BOSH_STATUS" | grep CPI | awk '{print $2}')
+  DIRECTOR_NAME=$(echo "$BOSH_STATUS" | grep Name | awk '{print $2}')
+  NAME=$template_prefix-$infrastructure
+else
+  DIRECTOR_UUID=xxxxxxx-6076-11e5-8e69-6c4008a663f0
+  DIRECTOR_CPI=aws
+  NAME=demo
+fi
 
 if [[ $DIRECTOR_NAME = "Bosh Lite Director" ]]; then
   if [[ $infrastructure != "garden" || $infrastructure != "warden" ]]; then
@@ -38,7 +44,7 @@ if [[ $DIRECTOR_NAME = "Bosh Lite Director" ]]; then
   fi
 fi
 
-if [[ $infrastructure = "aws-ec2" ]]; then
+if [[ $infrastructure = "aws" ]]; then
   if [[ $DIRECTOR_CPI != "aws" ]]; then
     echo "Not targeting an AWS BOSH. Please use 'bosh target' before running this script."
     exit 1

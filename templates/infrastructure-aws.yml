@@ -1,11 +1,8 @@
 meta:
-  environment: (( merge ))
-  dns_root: (( merge ))
-  security_groups: (( merge ))
-  persistent_disk: 4096
+  persistent_disk: 40960
 
   stemcell:
-    name: bosh-aws-xen-ubuntu
+    name: bosh-aws-xen-ubuntu-trusty-go_agent
     version: latest
 
 jobs:
@@ -24,10 +21,6 @@ resource_pools:
       instance_type: m1.small
 
 networks:
-  - name: floating
-    type: vip
-    cloud_properties: {}
-  - name: postgresql_docker1
-    type: dynamic
-    cloud_properties:
-      security_groups: (( meta.security_groups ))
+- name: postgresql_docker1
+  type: manual
+  subnets: (( meta.subnets ))
