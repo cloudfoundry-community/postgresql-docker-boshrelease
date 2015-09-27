@@ -2,6 +2,7 @@
 meta:
   release_versions:
     postgresql_docker: latest
+    subway: latest
     docker: latest
   stemcell:
     name: STEMCELL

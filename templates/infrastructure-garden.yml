@@ -20,11 +20,16 @@ update:
   canary_watch_time: 1000-30000
   update_watch_time: 1000-30000
 
+networks:
+- name: docker1
+  type: manual
+  subnets: (( meta.subnets ))
+
 jobs:
-  - name: postgresql_docker_z1
+  - name: docker_z1
     networks:
-      - name: postgresql_docker1
-        static_ips: ~
+      - name: docker1
+        static_ips: (( static_ips(0,1,2,3) ))
 
 compilation:
   cloud_properties:
@@ -35,8 +40,3 @@ resource_pools:
     cloud_properties:
       name: random
     stemcell: (( meta.stemcell ))
-
-networks:
-- name: postgresql_docker1
-  type: manual
-  subnets: (( meta.subnets ))

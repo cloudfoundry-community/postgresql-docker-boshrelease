@@ -16,6 +16,7 @@ meta:
 
   release_versions:
     docker: (( merge ))
+    subway: (( merge ))
     postgresql_docker: (( merge ))
   job_templates:
     # run docker daemon
@@ -23,10 +24,14 @@ meta:
     # do not run frodenas_postgresql_image template that installs embedded docker image
     # run service broker
     - {name: cf-containers-broker, release: docker}
+    # run subway broker to allow scale out of cluster
+    - {name: subway-broker, release: cf-subway}
 
 releases:
 - name: docker
   version: (( meta.release_versions.docker ))
+- name: cf-subway
+  version: (( meta.release_versions.subway ))
 - name: postgresql-docker
   version: (( meta.release_versions.postgresql_docker ))
 
@@ -35,6 +40,17 @@ properties:
 
   cf:
     api_url: (( meta.cfcontainersbroker.cc_api_uri ))
+
+  subway_broker:
+    backends:
+      hosts: (( jobs.docker_z1.networks.docker1.static_ips ))
+      username: (( meta.cfcontainersbroker.username ))
+      password: (( meta.cfcontainersbroker.password ))
+      protocol: http
+      port: 80
+    port: 8000
+    username: (( meta.cfcontainersbroker.username ))
+    password: (( meta.cfcontainersbroker.password ))
 
   broker:
     name: (( meta.cfcontainersbroker.component_name ))

@@ -6,9 +6,9 @@ meta:
     version: latest
 
 jobs:
-  - name: postgresql_docker_z1
+  - name: docker_z1
     networks:
-      - name: postgresql_docker1
+      - name: docker1
     persistent_disk: (( meta.persistent_disk ))
 
 compilation:
@@ -21,6 +21,6 @@ resource_pools:
       instance_type: m1.small
 
 networks:
-- name: postgresql_docker1
+- name: docker1
   type: manual
   subnets: (( merge ))

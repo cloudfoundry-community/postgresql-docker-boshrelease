@@ -13,6 +13,7 @@ meta:
 
   release_versions:
     docker: (( merge ))
+    subway: (( merge ))
     postgresql_docker: (( merge ))
   job_templates:
     # run docker daemon
@@ -21,10 +22,14 @@ meta:
     - {name: frodenas_postgresql_image, release: postgresql-docker}
     # run service broker
     - {name: cf-containers-broker, release: docker}
+    # run subway broker to allow scale out of cluster
+    - {name: subway-broker, release: cf-subway}
 
 releases:
 - name: docker
   version: (( meta.release_versions.docker ))
+- name: cf-subway
+  version: (( meta.release_versions.subway ))
 - name: postgresql-docker
   version: (( meta.release_versions.postgresql_docker ))
 

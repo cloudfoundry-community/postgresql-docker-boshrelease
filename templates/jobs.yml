@@ -9,7 +9,7 @@ update:
   serial: false
 
 jobs:
-  - name: postgresql_docker_z1
+  - name: docker_z1
     templates: (( meta.job_templates ))
     instances: 1
     resource_pool: small_z1

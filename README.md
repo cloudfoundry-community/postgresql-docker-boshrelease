@@ -27,6 +27,7 @@ To use this BOSH release, first upload it to your bosh and the `docker` release
 
 ```
 bosh upload release https://bosh.io/d/github.com/cf-platform-eng/docker-boshrelease
+bosh upload release https://bosh.io/d/github.com/cloudfoundry-community/cf-subway-boshrelease
 bosh upload release https://bosh.io/d/github.com/cloudfoundry-community/postgresql-docker-boshrelease
 ```
 
@@ -56,7 +57,7 @@ $ bosh vms postgresql-docker-warden
 +------------------------+---------+---------------+--------------+
 | Job/index              | State   | Resource Pool | IPs          |
 +------------------------+---------+---------------+--------------+
-| postgresql_docker_z1/0 | running | small_z1      | 10.244.20.10 |
+| docker_z1/0 | running | small_z1      | 10.244.20.10 |
 +------------------------+---------+---------------+--------------+
 ```
 
@@ -95,7 +96,7 @@ $ bosh vms postgresql-docker-warden
 +------------------------+---------+---------------+--------------+
 | Job/index              | State   | Resource Pool | IPs          |
 +------------------------+---------+---------------+--------------+
-| postgresql_docker_z1/0 | running | small_z1      | 10.244.20.10 |
+| docker_z1/0 | running | small_z1      | 10.244.20.10 |
 +------------------------+---------+---------------+--------------+
 ```
 
