@@ -39,6 +39,17 @@ properties:
   cf:
     api_url: (( meta.cfcontainersbroker.cc_api_uri ))
 
+  subway_broker:
+    backends:
+      hosts: []
+      username: (( meta.cfcontainersbroker.username ))
+      password: (( meta.cfcontainersbroker.password ))
+      protocol: http
+      port: 80
+    port: 8000
+    username: (( meta.cfcontainersbroker.username ))
+    password: (( meta.cfcontainersbroker.password ))
+
   broker:
     name: (( meta.cfcontainersbroker.component_name ))
     component_name: (( meta.cfcontainersbroker.component_name ))
