@@ -138,7 +138,7 @@ docker build -t $DOCKER_USER/postgresql .
 docker push $DOCKER_USER/postgresql
 ```
 
-This will create a new Docker image, based upon the upstream `frodenas/postgresql`.
+This will create a new Docker image, based upon the upstream `cfcommunity/postgresql:9.4`.
 
 You can now try out new postgresql configuration in `images/postgresql-dev/etc/postgresql/postgresql.conf` and re-build/push the image quickly.
 
@@ -167,13 +167,13 @@ To recreate the Docker image that hosts Logstash & Elastic Search and push it up
 
 ```
 cd image
-docker build -t frodenas/postgresql .
+docker build -t cfcommunity/postgresql:9.4 .
 ```
 
 To package the Docker image back into this release:
 
 ```
-bosh-gen package postgresql --docker-image frodenas/postgresql
+bosh-gen package postgresql --docker-image cfcommunity/postgresql:9.4
 bosh upload blobs
 ```
 
@@ -185,7 +185,7 @@ bosh create release --force && bosh -n upload release
 
 ### Final releases
 
-To share final releases, which include the `frodenas/postgresql` docker image embedded:
+To share final releases, which include the `cfcommunity/postgresql:9.4` docker image embedded:
 
 ```
 bosh create release --final

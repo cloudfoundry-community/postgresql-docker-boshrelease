@@ -17,11 +17,14 @@ case $1 in
     # store pid in $PIDFILE
     echo $$ > $PIDFILE
 
-    time docker \
-      --host unix:///var/vcap/sys/run/docker/docker.sock \
-      load -i /var/vcap/packages/postgresql-image/frodenas-postgresql.tgz
-        >>$LOG_DIR/$JOB_NAME.stdout.log \
-        2>>$LOG_DIR/$JOB_NAME.stderr.log
+    set -x # print commands
+    for image in $(ls /var/vcap/packages/postgresql-image/*.tgz); do
+      time docker \
+        --host unix:///var/vcap/sys/run/docker/docker.sock \
+        load -i ${image} \
+          >>$LOG_DIR/$JOB_NAME.stdout.log \
+          2>>$LOG_DIR/$JOB_NAME.stderr.log
+    done
 
     # do nothing forever
     exec tail -f /dev/null

@@ -1,4 +1,0 @@
----
-name: postgresql-image
-dependencies: []
-files: [docker-images/frodenas-postgresql.tgz]
