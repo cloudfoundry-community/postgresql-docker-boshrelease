@@ -1,5 +1,1 @@
----
-docker-images/frodenas-postgresql.tgz:
-  object_id: 38b18f74-fc79-4d7e-bf38-5144eaeace0f
-  sha: 94add5aedf11c425d411e705a9249684e9cbc88b
-  size: 454837760
+--- {}
