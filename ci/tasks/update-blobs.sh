@@ -7,9 +7,10 @@ fi
 
 mkdir -p boshrelease/blobs/docker-images
 
-for image in $(ls docker-image*/image); do
-  echo $image
-  cp $image boshrelease/blobs/docker-images/
+for image_dir in $(ls docker-image*/); do
+  imagename=$(cat $image_dir/repository)
+  tag=$(cat $image_dir/tag)
+  cp $image_dir/image boshrelease/blobs/docker-images/${imagename}-${tag}.tgz
 done
 
 cd boshrelease
