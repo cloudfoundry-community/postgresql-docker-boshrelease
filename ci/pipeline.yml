@@ -7,6 +7,13 @@ jobs:
   - put: docker-image-pg93
     params:
       build: boshrelease/images/postgresql93
+- name: image-pg94
+  serial: true
+  plan:
+  - get: boshrelease
+  - put: docker-image-pg94
+    params:
+      build: boshrelease/images/postgresql94
 
 resources:
 - name: boshrelease
