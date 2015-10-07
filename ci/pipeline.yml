@@ -1,6 +1,7 @@
 ---
 jobs:
 - name: image-pg93
+  public: true
   serial: true
   plan:
   - aggregate:
@@ -10,6 +11,7 @@ jobs:
     params:
       build: boshrelease/images/postgresql93
 - name: image-pg94
+  public: true
   serial: true
   plan:
   - aggregate:
@@ -19,6 +21,7 @@ jobs:
     params:
       build: boshrelease/images/postgresql94
 - name: blobs
+  public: true
   plan:
   - aggregate:
     - {get: docker-image-pg93, passed: [image-pg93]}
