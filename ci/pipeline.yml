@@ -3,14 +3,18 @@ jobs:
 - name: image-pg93
   serial: true
   plan:
-  - get: boshrelease
+  - aggregate:
+    - {get: boshrelease}
+    - {get: boshrelease-image-pg93, trigger: true}
   - put: docker-image-pg93
     params:
       build: boshrelease/images/postgresql93
 - name: image-pg94
   serial: true
   plan:
-  - get: boshrelease
+  - aggregate:
+    - {get: boshrelease}
+    - {get: boshrelease-image-pg94, trigger: true}
   - put: docker-image-pg94
     params:
       build: boshrelease/images/postgresql94
@@ -22,6 +26,22 @@ resources:
     uri: git@github.com:cloudfoundry-community/postgresql-docker-boshrelease.git
     branch: {{pipeline-branch}}
     private_key: {{github-key}}
+
+- name: boshrelease-image-pg93
+  type: git
+  source:
+    uri: git@github.com:cloudfoundry-community/postgresql-docker-boshrelease.git
+    branch: {{pipeline-branch}}
+    private_key: {{github-key}}
+    paths: [images/postgresql93/*]
+
+- name: boshrelease-image-pg94
+  type: git
+  source:
+    uri: git@github.com:cloudfoundry-community/postgresql-docker-boshrelease.git
+    branch: {{pipeline-branch}}
+    private_key: {{github-key}}
+    paths: [images/postgresql94/*]
 
 - name: docker-image-pg93
   type: docker-image
