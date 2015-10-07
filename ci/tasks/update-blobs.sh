@@ -5,6 +5,19 @@ if [[ "${aws_access_key_id}X" == "X" ]]; then
   exit 1
 fi
 
+
+cat > boshrelease/config/private.yml << EOF
+---
+blobstore:
+  s3:
+    access_key_id: ${aws_access_key_id}
+    secret_access_key: ${aws_secret_access_key}
+EOF
+
+cd boshrelease
+bosh -n sync blobs
+cd -
+
 mkdir -p boshrelease/blobs/docker-images
 
 for image_dir in $(ls docker-image*/image | xargs -L1 dirname); do
@@ -14,15 +27,6 @@ for image_dir in $(ls docker-image*/image | xargs -L1 dirname); do
 done
 
 cd boshrelease
-
-cat > config/private.yml << EOF
----
-blobstore:
-  s3:
-    access_key_id: ${aws_access_key_id}
-    secret_access_key: ${aws_secret_access_key}
-EOF
-
 bosh -n upload blobs
 
 if [[ -z "$(git config --global user.name)" ]]
