@@ -1,0 +1,11 @@
+---
+platform: linux
+image: docker:///concourse/concourse-ci
+
+inputs:
+- name: boshrelease
+- name: docker-image-pg93
+- name: docker-image-pg94
+
+run:
+  path: boshrelease/ci/tasks/update-blobs.sh

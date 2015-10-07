@@ -18,6 +18,14 @@ jobs:
   - put: docker-image-pg94
     params:
       build: boshrelease/images/postgresql94
+- name: blobs
+  plan:
+  - aggregate:
+    - {get: docker-image-pg93, passed: [image-pg93]}
+    - {get: docker-image-pg94, passed: [image-pg94]}
+    - {get: boshrelease}
+  - task: update-blobs
+    file: boshrelease/ci/tasks/update-blobs.yml
 
 resources:
 - name: boshrelease
