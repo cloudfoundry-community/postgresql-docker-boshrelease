@@ -18,7 +18,7 @@ case $1 in
     echo $$ > $PIDFILE
 
     set -x # print commands
-    for image in $(ls /var/vcap/packages/postgresql-image/*.tgz); do
+    for image in $(ls /var/vcap/packages/docker-images/*.tgz); do
       time docker \
         --host unix:///var/vcap/sys/run/docker/docker.sock \
         load -i ${image} \
