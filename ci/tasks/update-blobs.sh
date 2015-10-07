@@ -7,7 +7,7 @@ fi
 
 mkdir -p boshrelease/blobs/docker-images
 
-for image_dir in $(ls docker-image*/); do
+for image_dir in $(ls docker-image*/image | xargs -L1 dirname); do
   imagename=$(cat $image_dir/repository)
   tag=$(cat $image_dir/tag)
   cp $image_dir/image boshrelease/blobs/docker-images/${imagename}-${tag}.tgz
