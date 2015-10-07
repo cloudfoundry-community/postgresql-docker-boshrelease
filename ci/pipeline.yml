@@ -36,6 +36,7 @@ jobs:
   - put: boshrelease
     params:
       repository: update-blobs/boshrelease
+      rebase: true
 
 
 resources:
