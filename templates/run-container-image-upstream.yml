@@ -1,8 +1,8 @@
 ---
 meta:
   postgresql_image:
-    image: frodenas/postgresql-dev
-    tag: latest
+  image: cfcommunity/postgresql-dev
+  tag: latest
 
   release_versions:
     docker: (( merge ))

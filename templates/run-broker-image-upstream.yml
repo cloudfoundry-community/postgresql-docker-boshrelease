@@ -1,8 +1,8 @@
 ---
 meta:
   postgresql_image:
-    image: frodenas/postgresql
-    tag: latest
+    image: cfcommunity/postgresql
+    tag: 9.3
   cfcontainersbroker:
     cc_api_uri: (( merge ))
     external_host: (( merge ))
