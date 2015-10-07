@@ -1,0 +1,28 @@
+---
+jobs:
+- name: image-pg93
+  serial: true
+  plan:
+  - get: boshrelease
+  - put: docker-image-pg93
+    params:
+      build: boshrelease/images/postgresql
+
+resources:
+- name: docker-image-pg93
+  type: docker-image
+  source:
+    email: {{docker-hub-email}}
+    username: {{docker-hub-username}}
+    password: {{docker-hub-password}}
+    repository: cf-community/postgresql
+    tag: 9.3
+
+- name: docker-image-pg94
+  type: docker-image
+  source:
+    email: {{docker-hub-email}}
+    username: {{docker-hub-username}}
+    password: {{docker-hub-password}}
+    repository: cf-community/postgresql
+    tag: 9.4
