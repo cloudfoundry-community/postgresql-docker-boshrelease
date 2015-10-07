@@ -9,6 +9,13 @@ jobs:
       build: boshrelease/images/postgresql
 
 resources:
+- name: boshrelease
+  type: git
+  source:
+    uri: git@github.com:cloudfoundry-community/postgresql-docker-boshrelease.git
+    branch: {{pipeline-branch}}
+    private_key: {{github-key}}
+
 - name: docker-image-pg93
   type: docker-image
   source:
