@@ -149,7 +149,7 @@ Create an override YAML file, say `my-docker-image.yml`
 ```yaml
 ---
 meta:
-  postgresql_image:
+  postgresql_images:
     image: USERNAME/postgresql
     tag: latest
 ```

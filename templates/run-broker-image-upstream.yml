@@ -1,6 +1,6 @@
 ---
 meta:
-  postgresql_image:
+  postgresql_images:
     image: cfcommunity/postgresql
     tag: 9.3
   cfcontainersbroker:
@@ -20,7 +20,7 @@ meta:
   job_templates:
     # run docker daemon
     - {name: docker, release: docker}
-    # do not run frodenas_postgresql_image template that installs embedded docker image
+    # do not run postgresql_images template that installs embedded docker image
     # run service broker
     - {name: cf-containers-broker, release: docker}
 
@@ -75,8 +75,8 @@ properties:
             name: 'free'
             container:
               backend: 'docker'
-              image: (( meta.postgresql_image.image ))
-              tag: (( meta.postgresql_image.tag ))
+              image: (( meta.postgresql_images.image ))
+              tag: (( meta.postgresql_images.tag ))
               persistent_volumes:
                 - '/data'
             syslog_drain_port: '514/tcp'

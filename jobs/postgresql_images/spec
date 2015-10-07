@@ -1,5 +1,5 @@
 ---
-name: frodenas_postgresql_image
+name: postgresql_images
 packages: [postgresql-image]
 templates:
   bin/monit_debugger: bin/monit_debugger

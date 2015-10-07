@@ -7,7 +7,7 @@ meta:
     # run docker daemon
     - {name: docker, release: docker}
     # warm docker image cache from bosh package
-    - {name: frodenas_postgresql_image, release: postgresql-docker}
+    - {name: postgresql_images, release: postgresql-docker}
     # run containers (see properties.containers)
     - {name: containers, release: docker}
 
