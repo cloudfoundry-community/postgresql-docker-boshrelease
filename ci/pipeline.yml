@@ -26,6 +26,10 @@ jobs:
     - {get: boshrelease}
   - task: update-blobs
     file: boshrelease/ci/tasks/update-blobs.yml
+  - put: boshrelease
+    params:
+      repository: update-blobs/boshrelease
+
 
 resources:
 - name: boshrelease
