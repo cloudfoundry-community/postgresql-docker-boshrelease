@@ -1,5 +1,0 @@
-check process frodenas_postgresql_image
-  with pidfile /var/vcap/sys/run/frodenas_postgresql_image/frodenas_postgresql_image.pid
-  start program "/var/vcap/jobs/frodenas_postgresql_image/bin/monit_debugger install_ctl '/var/vcap/jobs/frodenas_postgresql_image/bin/install_ctl start'"
-  stop program "/var/vcap/jobs/frodenas_postgresql_image/bin/monit_debugger install_ctl '/var/vcap/jobs/frodenas_postgresql_image/bin/install_ctl stop'"
-  group vcap

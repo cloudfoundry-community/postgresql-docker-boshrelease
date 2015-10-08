@@ -1,6 +1,6 @@
 ---
-name: frodenas_postgresql_image
-packages: [postgresql-image]
+name: postgresql_images
+packages: [docker-images]
 templates:
   bin/monit_debugger: bin/monit_debugger
   bin/install_ctl: bin/install_ctl

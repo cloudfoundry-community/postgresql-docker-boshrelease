@@ -1,0 +1,5 @@
+check process postgresql_images
+  with pidfile /var/vcap/sys/run/postgresql_images/postgresql_images.pid
+  start program "/var/vcap/jobs/postgresql_images/bin/monit_debugger install_ctl '/var/vcap/jobs/postgresql_images/bin/install_ctl start'"
+  stop program "/var/vcap/jobs/postgresql_images/bin/monit_debugger install_ctl '/var/vcap/jobs/postgresql_images/bin/install_ctl stop'"
+  group vcap

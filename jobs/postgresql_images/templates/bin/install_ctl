@@ -4,7 +4,7 @@ set -e # exit immediately if a simple command exits with a non-zero status
 set -u # report the usage of uninitialized variables
 
 # Setup env vars and folders for the webapp_ctl script
-source /var/vcap/jobs/frodenas_postgresql_image/helpers/ctl_setup.sh 'frodenas_postgresql_image'
+source /var/vcap/jobs/postgresql_images/helpers/ctl_setup.sh 'postgresql_images'
 
 export PORT=${PORT:-5000}
 export LANG=en_US.UTF-8
@@ -17,11 +17,14 @@ case $1 in
     # store pid in $PIDFILE
     echo $$ > $PIDFILE
 
-    time docker \
-      --host unix:///var/vcap/sys/run/docker/docker.sock \
-      load -i /var/vcap/packages/postgresql-image/frodenas-postgresql.tgz
-        >>$LOG_DIR/$JOB_NAME.stdout.log \
-        2>>$LOG_DIR/$JOB_NAME.stderr.log
+    set -x # print commands
+    for image in $(ls /var/vcap/packages/docker-images/*.tgz); do
+      time docker \
+        --host unix:///var/vcap/sys/run/docker/docker.sock \
+        load -i ${image} \
+          >>$LOG_DIR/$JOB_NAME.stdout.log \
+          2>>$LOG_DIR/$JOB_NAME.stderr.log
+    done
 
     # do nothing forever
     exec tail -f /dev/null

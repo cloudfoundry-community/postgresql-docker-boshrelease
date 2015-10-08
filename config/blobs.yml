@@ -1,5 +1,9 @@
 ---
-docker-images/frodenas-postgresql.tgz:
-  object_id: 38b18f74-fc79-4d7e-bf38-5144eaeace0f
-  sha: 94add5aedf11c425d411e705a9249684e9cbc88b
-  size: 454837760
+docker-images/cfcommunity-postgresql-9.3.tgz:
+  object_id: fb09b896-9fcf-48e9-818e-0c6840086346
+  sha: 9924d6e9842e62190bfe017e24d5c8a380a8b5fb
+  size: 462590976
+docker-images/cfcommunity-postgresql-9.4.tgz:
+  object_id: 34705cd0-9313-4b12-be5e-422fd2c34b9b
+  sha: 56ec17ab170c5d4642734243a0ca3097d22add12
+  size: 473048576

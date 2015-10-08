@@ -1,8 +1,8 @@
 ---
 meta:
-  postgresql_image:
-    image: frodenas/postgresql-dev
-    tag: latest
+  postgresql_images:
+  image: cfcommunity/postgresql-dev
+  tag: latest
 
   release_versions:
     docker: (( merge ))
@@ -10,7 +10,7 @@ meta:
   job_templates:
     # run docker daemon
     - {name: docker, release: docker}
-    # do not run frodenas_postgresql_image template that installs embedded docker image
+    # do not run postgresql_images template that installs embedded docker image
     # run containers (see properties.containers)
     - {name: containers, release: docker}
 
@@ -23,8 +23,8 @@ releases:
 properties:
   containers:
     - name: postgresql
-      image: (( meta.postgresql_image.image ))
-      tag: (( meta.postgresql_image.tag ))
+      image: (( meta.postgresql_images.image ))
+      tag: (( meta.postgresql_images.tag ))
       command: ""
       bind_ports:
         - "514:514"
