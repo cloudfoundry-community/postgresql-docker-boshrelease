@@ -1,11 +1,9 @@
 ---
 docker-images/cfcommunity-postgresql-9.3.tgz:
-  object_id: 3fa115ef-0fcc-41b9-b754-deecec134c89
-  sha: !binary |-
-    OGEzNjQzMzg0MGIzNDBiNzI5NzIyZDY3NzEyMTIxZDlmZTUxMTBkZA==
-  size: 462589952
+  object_id: fb09b896-9fcf-48e9-818e-0c6840086346
+  sha: 9924d6e9842e62190bfe017e24d5c8a380a8b5fb
+  size: 462590976
 docker-images/cfcommunity-postgresql-9.4.tgz:
-  object_id: af7a6538-42d0-4f14-b246-12a971d3dc7c
-  sha: !binary |-
-    NDc1YzhiMjYyMDM1YjYxMDc1MGVmMGIxMTJjN2UyZmUyYjcwZmZjOA==
-  size: 473047552
+  object_id: 34705cd0-9313-4b12-be5e-422fd2c34b9b
+  sha: 56ec17ab170c5d4642734243a0ca3097d22add12
+  size: 473048576
