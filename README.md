@@ -7,6 +7,20 @@ This BOSH release has three use cases:
 -	run a Cloud Foundry service broker that itself runs containers of PostgreSQL Docker image on a BOSH VM based on user requests
 -	embedded PostgreSQL Docker image that could be used by another BOSH release
 
+As a Cloud Foundry service broker, there are two version of PostgreSQL that can be offered:
+
+```
+$ cf marketplace
+Getting services from marketplace in org system / space dev as admin...
+OK
+
+service        plans   description
+postgresql93   free    postgresql 9.3 service for application development and testing
+postgresql94   free    postgresql 9.4 service for application development and testing
+```
+
+NOTE: if you're deploying the broker for the first time, it is suggested to only offer the latest database to minimize the operations upset of deprecating and disabling the older one in the future.
+
 The PostgreSQL image can be referenced either:
 
 -	from an embebbed/bundled image stored with each BOSH release version
