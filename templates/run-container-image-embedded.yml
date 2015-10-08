@@ -21,7 +21,7 @@ properties:
   containers:
     - name: postgresql
       image: cfcommunity/postgresql
-      tag: 9.3
+      tag: "9.3"
       command: ""
       bind_ports:
         - "514:514"
