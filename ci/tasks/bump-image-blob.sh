@@ -5,12 +5,6 @@ if [[ "${aws_access_key_id}X" == "X" ]]; then
   exit 1
 fi
 
-if [[ "${resource_name}X" == "X" ]]; then
-  echo 'Require $resource_name'
-  exit 1
-fi
-
-
 cat > boshrelease/config/private.yml << EOF
 ---
 blobstore:
