@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# USAGE echo '{"credentials": {"uri": "postgresql://drnic@localhost:5432/booktown-restore"}}' |
+#   ./restore.sh /path/to/backup.tgz /tmp/restore
+exec 1>&2 # redirect all output to stderr for logging
+
 backup_path=$1; shift
 tmp_dir=$1; shift
 
@@ -8,8 +12,13 @@ if [[ "${tmp_dir}X" == "X" ]]; then
   exit 1
 fi
 
+payload=$(mktemp /tmp/backup-in.XXXXXX)
+cat > $payload <&0
+
+uri=$(jq -r '.credentials.uri // ""' < $payload)
+
 if [[ "${uri}X" == "X" ]]; then
-  echo "Require \$uri for postgresql DB"
+  echo "STDIN requires .credentials.uri for postgresql DB"
   exit 1
 fi
 
