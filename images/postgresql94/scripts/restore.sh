@@ -29,3 +29,5 @@ sed -i '' -e 's/\$\$PATH\$\$/./g' $restore_sql
 cat $restore_sql | grep PATH
 
 psql $uri -f $restore_sql
+
+rm -rf $unpack_dir
