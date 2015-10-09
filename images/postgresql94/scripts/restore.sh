@@ -25,7 +25,7 @@ if [[ ! -f $restore_sql ]]; then
   exit 1
 fi
 
-sed -i '' -e 's/\$\$PATH\$\$/\/tmp\/restore\/backup/g' $restore_sql
+sed -i '' -e 's/\$\$PATH\$\$/./g' $restore_sql
 cat $restore_sql | grep PATH
 
 psql $uri -f $restore_sql
