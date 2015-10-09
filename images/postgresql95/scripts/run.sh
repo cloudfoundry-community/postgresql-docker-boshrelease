@@ -6,7 +6,7 @@ if [ ! -f $DATA_DIR/postgresql.conf ]; then
     mkdir -p $DATA_DIR
     chown postgres:postgres /data
 
-    sudo -u postgres /usr/lib/postgresql/9.4/bin/initdb -E utf8 --locale en_US.UTF-8 -D $DATA_DIR
+    sudo -u postgres /usr/lib/postgresql/9.5/bin/initdb -E utf8 --locale en_US.UTF-8 -D $DATA_DIR
     sed -i -e"s/^#listen_addresses =.*$/listen_addresses = '*'/" $DATA_DIR/postgresql.conf
     echo "host    all    all    0.0.0.0/0    md5" >> $DATA_DIR/pg_hba.conf
 
@@ -22,4 +22,4 @@ fi
 
 # Start PostgreSQL
 echo "Starting PostgreSQL..."
-sudo -u postgres /usr/lib/postgresql/9.4/bin/postgres -D /data
+sudo -u postgres /usr/lib/postgresql/9.5/bin/postgres -D /data

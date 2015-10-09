@@ -5,7 +5,7 @@ DB=${POSTGRES_DBNAME:-}
 EXTENSIONS=${POSTGRES_EXTENSIONS:-}
 
 # Start PostgreSQL service
-sudo -u postgres /usr/lib/postgresql/9.4/bin/postgres -D /data &
+sudo -u postgres /usr/lib/postgresql/9.5/bin/postgres -D /data &
 while ! nc -vz localhost 5432; do sleep 1; done
 
 # Create user
@@ -35,7 +35,7 @@ EOF
 fi
 
 # Stop PostgreSQL service
-sudo -u postgres /usr/lib/postgresql/9.4/bin/pg_ctl stop -m fast -w -D /data
+sudo -u postgres /usr/lib/postgresql/9.5/bin/pg_ctl stop -m fast -w -D /data
 
 echo "========================================================================"
 echo "PostgreSQL User: \"$USER\""
