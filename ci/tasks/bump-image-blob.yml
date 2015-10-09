@@ -1,0 +1,14 @@
+---
+platform: linux
+image: docker:///concourse/concourse-ci
+
+inputs:
+- name: boshrelease
+- name: docker-image
+
+params:
+  aws_access_key_id:
+  aws_secret_access_key:
+
+run:
+  path: boshrelease/ci/tasks/bump-image-blob.sh
