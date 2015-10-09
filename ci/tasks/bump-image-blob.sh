@@ -1,5 +1,8 @@
 #!/bin/bash
 
+set -e # fail fast
+set -x # print commands
+
 if [[ "${aws_access_key_id}X" == "X" ]]; then
   echo 'Require $aws_access_key_id, $aws_secret_access_key'
   exit 1
