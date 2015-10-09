@@ -14,6 +14,10 @@ RUN DEBIAN_FRONTEND=noninteractive \
     service postgresql stop && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+# jq used by backup.sh & restore.sh
+ADD http://stedolan.github.io/jq/download/linux64/jq /usr/bin/
+RUN chmod 775 /usr/bin/jq
+
 # Add scripts
 ADD scripts /scripts
 RUN chmod +x /scripts/*.sh
