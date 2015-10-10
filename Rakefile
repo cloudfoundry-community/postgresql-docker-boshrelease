@@ -15,8 +15,9 @@ namespace :images do
     include ImageConfig
 
     images(args[:image]).each do |image|
-      sh "docker pull #{image.name}"
-      sh "docker save #{image.name} > #{tmp_dir(image.tar)}"
+      sh "docker pull #{image.name}" if ENV["DOCKER_PULL"]
+      FileUtils.mkdir_p(source_image_dir(File.dirname(image.tar)))
+      sh "docker save #{image.name} > #{source_image_dir(image.tar)}"
     end
   end
 
@@ -27,8 +28,8 @@ namespace :images do
 
     images(args[:image]).each do |image|
       Dir.mktmpdir do |dir|
-        repackage_image_blobs(tmp_dir(image.tar), dir).tap do |blobs|
-          blobs.each { |b| sh "bosh add blob #{b.target(dir)} #{b.prefix}" }
+        repackage_image_blobs(source_image_dir(image.tar), dir).tap do |blobs|
+          blobs.each { |b| sh "bosh add blob #{b.blob_target(dir)} #{b.prefix}" }
           create_package(image.package, blobs.map(&:path))
         end
       end
@@ -41,8 +42,9 @@ module CommonDirs
     File.expand_path("../", __FILE__)
   end
 
-  def tmp_dir(path = "")
-    File.join(repo_dir, 'tmp', path)
+  def source_image_dir(relative_path = "")
+    image_base_dir = ENV['IMAGE_BASE_DIR'] || File.join(repo_dir, 'tmp')
+    File.join(image_base_dir, relative_path)
   end
 
   def packages_dir(path = "")
@@ -106,31 +108,38 @@ end
 module DockerImagePackaging
   include CommonDirs
 
-  PREFIXES = %w(docker_layers docker_images)
-
   class Blob
-    attr_reader :source, :target, :prefix
-    def initialize(source, target, prefix)
+    attr_reader :source, :target_dir, :prefix
+
+    # target_dir is a folder akin to output from concourse/docker-image-resource
+    # with an +image+ file that is the `docker save` tgz file (see +source_blob+)
+    def initialize(source, target_name, prefix)
       @source = source
-      @target = target.sub('.tgz', '') + '.tgz'
+      @target_name = target_name
       @prefix = prefix
     end
 
-    def target(dir = nil)
-      dir ? File.join(dir, @target) : @target
+    def target
+      "#{@target_name}.tgz"
+    end
+
+    def blob_target(dir)
+      File.join(dir, target)
     end
 
     def path
-      "#{@prefix}/#{@target}"
+      "#{@prefix}/#{@target_name}"
     end
   end
 
-  def repackage_image_blobs(image_tar, target_dir)
-    Dir.chdir(target_dir) do
+  def repackage_image_blobs(image_tar, tmp_layers_dir)
+    Dir.chdir(tmp_layers_dir) do
       sh "tar -xf #{image_tar}"
 
-      blobs = Dir.glob("*/").map! { |d| Blob.new(d.chop, d.chop, PREFIXES[0]) }
-      blobs << Blob.new('repositories', File.basename(image_tar), PREFIXES[1])
+      blobs = Dir.glob("*/").map! do |d|
+               Blob.new(d.chop, d.chop, 'docker_layers')
+      end
+      blobs << Blob.new('repositories', File.basename(File.dirname(image_tar)), 'docker_images')
 
       package_blobs(blobs)
     end
