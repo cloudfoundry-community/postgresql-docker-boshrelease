@@ -82,6 +82,19 @@ jobs:
   - put: boshrelease
     params: {repository: bump-image-blob/boshrelease, rebase: true}
 
+- name: testflight
+  public: true
+  plan:
+  - aggregate:
+    - {get: boshrelease}
+  - task: upload-dev-release
+    file: boshrelease/ci/tasks/upload-dev-release.yml
+    config:
+      params:
+        bosh_target: {{bosh-lite-target}}
+        bosh_username: {{bosh-lite-username}}
+        bosh_password: {{bosh-lite-password}}
+
 resources:
 - name: boshrelease
   type: git

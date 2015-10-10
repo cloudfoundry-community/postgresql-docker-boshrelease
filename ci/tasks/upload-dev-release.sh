@@ -5,16 +5,6 @@ if [[ "${bosh_target}X" == "X" ]]; then
   exit 1
 fi
 
-mkdir -p boshrelease/blobs/docker-images
-
-for image in $(ls docker-image*/image); do
-  echo $image
-  cp $image boshrelease/blobs/docker-images/
-done
-
-cd boshrelease
-bosh create release
-
 cat > ~/.bosh_config << EOF
 ---
 aliases:
@@ -25,6 +15,9 @@ auth:
     username: ${bosh_username}
     password: ${bosh_password}
 EOF
+
+cd boshrelease
 bosh target ${bosh_target}
 
+bosh create release
 bosh -n upload release --rebase
