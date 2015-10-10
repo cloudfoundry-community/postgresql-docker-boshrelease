@@ -20,19 +20,18 @@ cd boshrelease
 bosh -n sync blobs
 cd -
 
-mkdir -p boshrelease/blobs/docker-images
-
 imagename=$(cat docker-image/repository | sed "s/\//\-/")
 tag=$(cat docker-image/tag)
-cp docker-image/image boshrelease/blobs/docker-images/${imagename}-${tag}.tgz
 
-cd boshrelease
-bosh -n upload blobs
+rake -T
 
-if [[ -z "$(git config --global user.name)" ]]
-then
-  git config --global user.name "Concourse Bot"
-  git config --global user.email "concourse-bot@starkandwayne.com"
-fi
-
-git commit -a -m "updated docker image blobs"
+# cd boshrelease
+# bosh -n upload blobs
+#
+# if [[ -z "$(git config --global user.name)" ]]
+# then
+#   git config --global user.name "Concourse Bot"
+#   git config --global user.email "concourse-bot@starkandwayne.com"
+# fi
+#
+# git commit -a -m "updated docker image blobs"
