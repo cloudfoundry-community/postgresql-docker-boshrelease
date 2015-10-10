@@ -20,8 +20,10 @@ cd boshrelease
 bosh -n sync blobs
 cd -
 
-imagename=$(cat docker-image/repository | sed "s/\//\-/")
-tag=$(cat docker-image/tag)
+ls tmp/*
+
+# imagename=$(cat docker-image/repository | sed "s/\//\-/")
+# tag=$(cat docker-image/tag)
 
 rake -T
 
