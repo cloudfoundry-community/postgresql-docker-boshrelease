@@ -42,16 +42,16 @@ jobs:
   - put: docker-image-pg93
     params:
       build: boshrelease/images/postgresql93
-  - get: docker-image
-    resource: docker-image-pg93
-  - task: bump-image-blob
-    file: boshrelease/ci/tasks/bump-image-blob.yml
-    config:
-      params:
-        aws_access_key_id: {{blobstore-aws-accesss}}
-        aws_secret_access_key: {{blobstore-aws-secret}}
-  - put: boshrelease
-    params: {repository: update-blobs/boshrelease, rebase: true}
+  # - get: docker-image
+  #   resource: docker-image-pg93
+  # - task: bump-image-blob
+  #   file: boshrelease/ci/tasks/bump-image-blob.yml
+  #   config:
+  #     params:
+  #       aws_access_key_id: {{blobstore-aws-accesss}}
+  #       aws_secret_access_key: {{blobstore-aws-secret}}
+  # - put: boshrelease
+  #   params: {repository: update-blobs/boshrelease, rebase: true}
 - name: image-pg94
   public: true
   serial: true
@@ -62,16 +62,16 @@ jobs:
   - put: docker-image-pg94
     params:
       build: boshrelease/images/postgresql94
-  - get: docker-image
-    resource: docker-image-pg94
-  - task: bump-image-blob
-    file: boshrelease/ci/tasks/bump-image-blob.yml
-    config:
-      params:
-        aws_access_key_id: {{blobstore-aws-accesss}}
-        aws_secret_access_key: {{blobstore-aws-secret}}
-  - put: boshrelease
-    params: {repository: update-blobs/boshrelease, rebase: true}
+  # - get: docker-image
+  #   resource: docker-image-pg94
+  # - task: bump-image-blob
+  #   file: boshrelease/ci/tasks/bump-image-blob.yml
+  #   config:
+  #     params:
+  #       aws_access_key_id: {{blobstore-aws-accesss}}
+  #       aws_secret_access_key: {{blobstore-aws-secret}}
+  # - put: boshrelease
+  #   params: {repository: update-blobs/boshrelease, rebase: true}
 - name: image-pg95
   public: true
   serial: true
@@ -82,16 +82,16 @@ jobs:
   - put: docker-image-pg95
     params:
       build: boshrelease/images/postgresql95
-  - get: docker-image
-    resource: docker-image-pg95
-  - task: bump-image-blob
-    file: boshrelease/ci/tasks/bump-image-blob.yml
-    config:
-      params:
-        aws_access_key_id: {{blobstore-aws-accesss}}
-        aws_secret_access_key: {{blobstore-aws-secret}}
-  - put: boshrelease
-    params: {repository: update-blobs/boshrelease, rebase: true}
+  # - get: docker-image
+  #   resource: docker-image-pg95
+  # - task: bump-image-blob
+  #   file: boshrelease/ci/tasks/bump-image-blob.yml
+  #   config:
+  #     params:
+  #       aws_access_key_id: {{blobstore-aws-accesss}}
+  #       aws_secret_access_key: {{blobstore-aws-secret}}
+  # - put: boshrelease
+  #   params: {repository: update-blobs/boshrelease, rebase: true}
 
 
 resources:
