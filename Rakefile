@@ -1,5 +1,6 @@
 require 'yaml'
 require 'fileutils'
+require 'tmpdir'
 
 namespace :jobs do
   desc "Update job specs"
