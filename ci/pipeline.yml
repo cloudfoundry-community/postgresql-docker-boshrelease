@@ -1,7 +1,7 @@
 ---
 groups:
 - name: images
-  jobs: [bump-layers, image-pg93, image-pg94, image-pg95]
+  jobs: [bump-layers, testflight, image-pg93, image-pg94, image-pg95]
 - name: base
   jobs: [image-pg93-base, image-pg94-base, image-pg95-base]
 jobs:
