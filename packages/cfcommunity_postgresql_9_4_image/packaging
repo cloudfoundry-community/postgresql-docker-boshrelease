@@ -1,0 +1,6 @@
+set -e; set -u
+cd docker_layers
+for layer in *.tgz; do tar -xf "$layer"; rm "$layer"; done
+tar -xf ../docker_images/*.tgz
+tar -zcf image.tgz ./*
+cp -a image.tgz $BOSH_INSTALL_TARGET
