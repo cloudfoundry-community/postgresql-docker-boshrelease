@@ -21,18 +21,14 @@ bundle
 
 bosh -n sync blobs
 
-ls tmp/*
-
-rake -T
 rake images:package
 
-# cd boshrelease
-# bosh -n upload blobs
-#
-# if [[ -z "$(git config --global user.name)" ]]
-# then
-#   git config --global user.name "Concourse Bot"
-#   git config --global user.email "concourse-bot@starkandwayne.com"
-# fi
-#
-# git commit -a -m "updated docker image blobs"
+bosh -n upload blobs
+
+if [[ -z "$(git config --global user.name)" ]]
+then
+  git config --global user.name "Concourse Bot"
+  git config --global user.email "concourse-bot@starkandwayne.com"
+fi
+
+git commit -a -m "updated image layers"
