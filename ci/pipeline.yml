@@ -69,10 +69,10 @@ jobs:
   serial_groups: [boshrelease]
   plan:
   - aggregate:
-    - {get: boshrelease}
     - {get: docker-image-pg93, passed: [image-pg93], trigger: true}
-    - {get: docker-image-pg94, passed: [image-pg94], trigger: true}
-    - {get: docker-image-pg95, passed: [image-pg95], trigger: true}
+    # - {get: docker-image-pg94, passed: [image-pg94], trigger: true}
+    # - {get: docker-image-pg95, passed: [image-pg95], trigger: true}
+    - {get: boshrelease}
   - task: bump-image-blob
     file: boshrelease/ci/tasks/bump-image-layers.yml
     config:
