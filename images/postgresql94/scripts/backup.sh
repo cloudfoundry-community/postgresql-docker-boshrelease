@@ -24,4 +24,6 @@ if [[ "${uri}X" == "X" ]]; then
 fi
 
 mkdir -p $(dirname $store_path)
-pg_dump --no-owner --inserts --no-privileges --verbose -f $store_path -F t $uri
+
+echo "dumping from psql $PG_VERSION"
+pg_dump --no-owner --no-privileges --verbose -f $store_path -F t $uri

@@ -10,8 +10,8 @@ server_major_version=$(psql $dburi -c "show server_version;" | head -n3 | tail -
 backupdir=/tmp/backups; mkdir -p $backupdir
 image=cfcommunity/postgresql:$server_major_version
 echo "{\"credentials\": {\"uri\": \"${dburi}\"}}" | \
-  docker run --add-host=db:$hostip -i \
-    -v ${backupdir}:/data:rw \
+  docker run -i \
     --entrypoint /scripts/backup.sh \
+    -v ${backupdir}:/data:rw \
     $image someid /data/mybackup/mybackup.tgz
 ```
