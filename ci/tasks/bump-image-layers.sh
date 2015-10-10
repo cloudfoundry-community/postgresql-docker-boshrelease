@@ -17,6 +17,8 @@ blobstore:
 EOF
 
 cd boshrelease
+bundle
+
 bosh -n sync blobs
 
 ls tmp/*
