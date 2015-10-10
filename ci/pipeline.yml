@@ -86,6 +86,9 @@ jobs:
   public: true
   plan:
   - aggregate:
+    - {get: docker-image-pg93, passed: [bump-layers], trigger: true, params: {skip_download: false}}
+    - {get: docker-image-pg94, passed: [bump-layers], trigger: true, params: {skip_download: false}}
+    - {get: docker-image-pg95, passed: [bump-layers], trigger: true, params: {skip_download: false}}
     - {get: boshrelease}
   - task: upload-dev-release
     file: boshrelease/ci/tasks/upload-dev-release.yml
