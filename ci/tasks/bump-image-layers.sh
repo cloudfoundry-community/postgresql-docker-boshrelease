@@ -18,14 +18,11 @@ EOF
 
 cd boshrelease
 bosh -n sync blobs
-cd -
 
 ls tmp/*
 
-# imagename=$(cat docker-image/repository | sed "s/\//\-/")
-# tag=$(cat docker-image/tag)
-
 rake -T
+rake images:package
 
 # cd boshrelease
 # bosh -n upload blobs
