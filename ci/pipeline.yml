@@ -20,7 +20,7 @@ jobs:
   plan:
   - aggregate:
     - {get: boshrelease}
-  - put: docker-image-pg93-base
+  - put: docker-image-pg94-base
     params:
       build: boshrelease/images/postgresql94-base
 - name: image-pg95-base
