@@ -79,8 +79,8 @@ jobs:
       params:
         aws_access_key_id: {{blobstore-aws-accesss}}
         aws_secret_access_key: {{blobstore-aws-secret}}
-  # - put: boshrelease
-  #   params: {repository: update-blobs/boshrelease, rebase: true}
+  - put: boshrelease
+    params: {repository: update-blobs/boshrelease, rebase: true}
 
 resources:
 - name: boshrelease
