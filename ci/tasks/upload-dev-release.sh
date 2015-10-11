@@ -19,5 +19,5 @@ EOF
 cd boshrelease
 bosh target ${bosh_target}
 
-bosh create release
+bosh create release --name postgresql-docker
 bosh -n upload release --rebase
