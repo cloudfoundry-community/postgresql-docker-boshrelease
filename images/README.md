@@ -20,16 +20,7 @@ echo "{\"credentials\": {\"uri\": \"${from_dburi}\"}}" | \
     $image someid /data/mybackup/backup.dump
 ```
 
-The `mybackup.tgz` file will be at `/tmp/backups/mybackup/mybackup.tgz` on the machine running the docker daemon.
-
-For laptops running `docker-machine`, you will first need to SSH into this VM:
-
-```
-laptop$ docker-machine ssh default
-
-docker@default:~$ ls -al /tmp/backups/mybackup/mybackup.tgz
--rw-r--r--    1 root     root         20992 Oct 11 05:37 /tmp/backups/mybackup/mybackup.tgz
-```
+The `backup.dump` file will be at `/tmp/backups/mybackup/backup.dump` on the machine running the docker daemon.
 
 ### Preparing a new DB for restore
 
