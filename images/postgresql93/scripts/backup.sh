@@ -26,4 +26,4 @@ fi
 mkdir -p $(dirname $store_path)
 
 echo "dumping from psql $PG_VERSION"
-pg_dump --no-owner --no-privileges --verbose -f $store_path -F t $uri
+pg_dump --no-owner --no-privileges --verbose -f $store_path -Fc $uri

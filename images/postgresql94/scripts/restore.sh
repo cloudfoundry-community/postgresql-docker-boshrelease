@@ -25,30 +25,5 @@ if [[ "${uri}X" == "X" ]]; then
   exit 1
 fi
 
-unpack_dir=$tmp_dir/backup
-rm -rf $unpack_dir
-mkdir -p $unpack_dir
-cd $unpack_dir
-
-echo "unpacking tarball"
-ls /data
-ls /data/mybackup
-tar xf $backup_path
-
-# TODO: should restore.sh cleanup, or if data is on diff volumes then can be managed externally?
-# echo "deleting tarball to save space"
-# rm -rf $backup_path
-
-restore_sql=$unpack_dir/restore.sql
-if [[ ! -f $restore_sql ]]; then
-  echo "ERROR: unpacked backup is missing restore.sql"
-  exit 1
-fi
-
-sed -i'' -e 's/\$\$PATH\$\$/./g' $restore_sql
-# cat $restore_sql | grep PATH
-
 echo "importing to psql $PG_VERSION"
-psql $uri --clean --format tar -f $restore_sql
-
-rm -rf $unpack_dir
+pg_restore -d $uri --no-owner --no-privileges --clean ${backup_path}
