@@ -38,6 +38,14 @@ namespace :images do
       end
     end
   end
+
+  task :cleanout do
+    FileUtils.rm_rf("blobs/docker_layers")
+    file = "config/blobs.yml"
+    blobs = YAML.load_file(file)
+    blobs = blobs.keep_if { |blob, _| !(blob =~ /^(docker_layers|docker_images)/) }
+    IO.write(file, blobs.to_yaml)
+  end
 end
 
 module CommonDirs
