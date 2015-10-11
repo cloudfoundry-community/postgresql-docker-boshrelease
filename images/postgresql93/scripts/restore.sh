@@ -49,6 +49,6 @@ sed -i'' -e 's/\$\$PATH\$\$/./g' $restore_sql
 # cat $restore_sql | grep PATH
 
 echo "importing to psql $PG_VERSION"
-psql $uri -f $restore_sql
+psql $uri --clean --format tar -f $restore_sql
 
 rm -rf $unpack_dir
