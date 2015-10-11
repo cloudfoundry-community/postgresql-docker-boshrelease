@@ -31,7 +31,7 @@ namespace :images do
       Dir.mktmpdir do |dir|
         repackage_image_blobs(source_image_dir(image.tar), dir).tap do |blobs|
           blobs.each { |b| sh "bosh add blob #{b.blob_target(dir)} #{b.prefix}" }
-          create_package(image.package, blobs.map(&:path))
+          create_package(image.package, blobs.map(&:package_spec_path))
         end
       end
     end
@@ -128,8 +128,8 @@ module DockerImagePackaging
       File.join(dir, target)
     end
 
-    def path
-      "#{@prefix}/#{@target_name}"
+    def package_spec_path
+      "#{@prefix}/#{target}"
     end
   end
 
