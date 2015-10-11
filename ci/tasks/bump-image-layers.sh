@@ -29,7 +29,7 @@ bosh -n upload blobs
 if [[ -z "$(git config --global user.name)" ]]
 then
   git config --global user.name "Concourse Bot"
-  git config --global user.email "concourse-bot@starkandwayne.com"
+  git config --global user.email "drnic+bot@starkandwayne.com"
 fi
 
 git commit -a -m "updated image layers"
