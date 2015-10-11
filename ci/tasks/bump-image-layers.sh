@@ -22,6 +22,7 @@ bundle
 bosh -n sync blobs
 
 rake images:package
+rake jobs:update_spec
 
 bosh -n upload blobs
 

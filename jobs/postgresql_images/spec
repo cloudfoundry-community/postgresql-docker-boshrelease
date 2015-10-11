@@ -1,6 +1,8 @@
 ---
 name: postgresql_images
-packages: [docker-images]
+packages:
+- cfcommunity_postgresql_9_3_image
+- cfcommunity_postgresql_9_4_image
 templates:
   bin/monit_debugger: bin/monit_debugger
   bin/install_ctl: bin/install_ctl

@@ -2,11 +2,13 @@ require 'yaml'
 require 'fileutils'
 require 'tmpdir'
 
+DOCKER_IMAGES_JOB = "postgresql_images"
+
 namespace :jobs do
-  desc "Update job specs"
-  task :update_specs do
+  desc "Update #{DOCKER_IMAGES_JOB} job spec"
+  task :update_spec do
     include JobSpecs
-    update_job_specs
+    update_job_spec
   end
 end
 
@@ -64,13 +66,12 @@ module JobSpecs
     Dir.chdir(packages_dir) { Dir.glob("*_image") }
   end
 
-  def update_job_specs
-    Dir["#{jobs_dir}*/spec"].map do |file|
-      spec = YAML.load_file(file)
-      spec["packages"].concat(image_packages).uniq!
-      IO.write(file, spec.to_yaml)
-      puts "Updated: #{file}"
-    end
+  def update_job_spec
+    file = "jobs/#{DOCKER_IMAGES_JOB}/spec"
+    spec = YAML.load_file(file)
+    spec["packages"] = image_packages
+    IO.write(file, spec.to_yaml)
+    puts "Updated: #{file}"
   end
 end
 
