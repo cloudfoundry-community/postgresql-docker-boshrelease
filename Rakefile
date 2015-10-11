@@ -40,6 +40,7 @@ namespace :images do
   end
 
   task :cleanout do
+    FileUtils.rm_rf("blobs/docker_images")
     FileUtils.rm_rf("blobs/docker_layers")
     file = "config/blobs.yml"
     blobs = YAML.load_file(file)
