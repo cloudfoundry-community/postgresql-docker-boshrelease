@@ -24,3 +24,6 @@ bosh target ${bosh_target}
 
 bosh create release --name postgresql-docker
 bosh -n upload release --rebase
+
+./templates/make_manifest garden broker embedded
+bosh -n deploy
