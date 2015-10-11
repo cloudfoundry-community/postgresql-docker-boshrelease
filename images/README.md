@@ -4,11 +4,11 @@ Examples
 ### Running backup.sh
 
 ```
-dburi=postgres://user:pass@pellefant.db.elephantsql.com:5432/database
+from_dburi=postgres://user:pass@pellefant.db.elephantsql.com:5432/database
 server_major_version=$(psql $dburi -c "show server_version;" | head -n3 | tail -n1 | awk '{print $1}' | head -c 3)
 
 image=cfcommunity/postgresql:$server_major_version
-echo "{\"credentials\": {\"uri\": \"${dburi}\"}}" | \
+echo "{\"credentials\": {\"uri\": \"${from_dburi}\"}}" | \
   docker run -i \
     --entrypoint /scripts/backup.sh \
     -v /tmp/backups:/data:rw \
@@ -24,4 +24,18 @@ laptop$ docker-machine ssh default
 
 docker@default:~$ ls -al /tmp/backups/mybackup/mybackup.tgz
 -rw-r--r--    1 root     root         20992 Oct 11 05:37 /tmp/backups/mybackup/mybackup.tgz
+```
+
+### Running restore.sh
+
+```
+to_dburi=postgres://user:pass@pellefant.db.elephantsql.com:5432/database
+server_major_version=$(psql $dburi -c "show server_version;" | head -n3 | tail -n1 | awk '{print $1}' | head -c 3)
+
+image=cfcommunity/postgresql:$server_major_version
+echo "{\"credentials\": {\"uri\": \"${to_dburi}\"}}" | \
+  docker run -i \
+    --entrypoint /scripts/restore.sh \
+    -v /tmp/backups:/data:rw \
+    $image /data/mybackup/mybackup.tgz /tmp
 ```
