@@ -157,7 +157,7 @@ properties:
             container:
               backend: 'docker'
               image: cfcommunity/postgresql
-              tag: "9.4"
+              tag: "9.5"
               persistent_volumes:
                 - '/data'
             syslog_drain_port: '514/tcp'
