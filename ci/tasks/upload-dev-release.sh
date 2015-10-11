@@ -1,5 +1,8 @@
 #!/bin/bash
 
+set -e
+set -x
+
 if [[ "${bosh_target}X" == "X" ]]; then
   echo 'Require $bosh_target, $bosh_username, $bosh_password'
   exit 1
