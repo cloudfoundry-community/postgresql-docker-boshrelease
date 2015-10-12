@@ -90,7 +90,7 @@ jobs:
     - {get: docker-image-pg93, passed: [bump-layers], trigger: true, params: {skip_download: true}}
     - {get: docker-image-pg94, passed: [bump-layers], trigger: true, params: {skip_download: true}}
     - {get: docker-image-pg95, passed: [bump-layers], trigger: true, params: {skip_download: true}}
-    - {get: boshrelease}
+    - {get: boshrelease, passed: [bump-layers]}
   - task: upload-dev-release
     file: boshrelease/ci/tasks/upload-dev-release.yml
     config:
