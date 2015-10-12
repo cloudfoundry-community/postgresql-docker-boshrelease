@@ -17,22 +17,20 @@ blobstore:
 EOF
 
 cd boshrelease
+gem install rake --no-ri --no-rdoc
+
 bosh -n sync blobs
-cd -
 
-mkdir -p boshrelease/blobs/docker-images
+rake images:cleanout
+rake images:package
+rake jobs:update_spec
 
-imagename=$(cat docker-image/repository | sed "s/\//\-/")
-tag=$(cat docker-image/tag)
-cp docker-image/image boshrelease/blobs/docker-images/${imagename}-${tag}.tgz
-
-cd boshrelease
 bosh -n upload blobs
 
 if [[ -z "$(git config --global user.name)" ]]
 then
   git config --global user.name "Concourse Bot"
-  git config --global user.email "concourse-bot@starkandwayne.com"
+  git config --global user.email "drnic+bot@starkandwayne.com"
 fi
 
-git commit -a -m "updated docker image blobs"
+git commit -a -m "updated image layers"

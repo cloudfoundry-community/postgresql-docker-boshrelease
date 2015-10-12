@@ -1,0 +1,7 @@
+- image: cfcommunity/postgresql
+  tag: "9.3"
+- image: cfcommunity/postgresql
+  tag: "9.4"
+- image: cfcommunity/postgresql
+  tag: "9.5"
+
