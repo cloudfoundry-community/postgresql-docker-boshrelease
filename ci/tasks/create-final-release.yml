@@ -1,6 +1,6 @@
+---
 platform: linux
-
-image: {{docker-hub-task-image}}
+image: docker:///concourse/concourse-ci
 
 inputs:
 - {name: boshrelease}
