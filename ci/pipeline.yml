@@ -103,15 +103,21 @@ jobs:
   public: true
   serial: true
   plan:
-  - do:
-    - get: boshrelease
-      passed: [testflight]
-    - task: create-final-release
-      file: boshrelease/ci/tasks/create-final-release.yml
-    - put: boshrelease
+  - get: boshrelease
+    # passed: [testflight]
+  - task: create-final-release
+    file: boshrelease/ci/tasks/create-final-release.yml
+    config:
       params:
-        repository: create-final-release/boshrelease
-        rebase: true
+        aws_access_key_id: {{blobstore-aws-accesss}}
+        aws_secret_access_key: {{blobstore-aws-secret}}
+        bosh_target: {{bosh-lite-target}}
+        bosh_username: {{bosh-lite-username}}
+        bosh_password: {{bosh-lite-password}}
+  - put: boshrelease
+    params:
+      repository: create-final-release/boshrelease
+      rebase: true
 
 resources:
 - name: boshrelease
