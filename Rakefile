@@ -39,16 +39,16 @@ namespace :images do
     required_layers = []
     images.each do |image|
       Dir.mktmpdir do |dir|
-        required_layers = repackage_image_blobs(source_image_dir(image.tar), dir)
-        new_layers = required_layers - existing_layers
+        required_blobs = repackage_image_blobs(source_image_dir(image.tar), dir)
 
-        new_layers.each do |b|
+        required_layers = []
+        required_blobs.each do |b|
           unless existing_layers.include?(b.target)
             sh "bosh add blob #{b.blob_target(dir)} #{b.prefix}"
           end
           required_layers << b.target
         end
-        create_package(image.package, new_layers.map(&:package_spec_path))
+        create_package(image.package, required_blobs.map(&:package_spec_path))
       end
     end
     puts "Removing unused blobs:"
