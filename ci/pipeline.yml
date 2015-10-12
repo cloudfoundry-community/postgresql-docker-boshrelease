@@ -104,7 +104,7 @@ jobs:
   serial: true
   plan:
   - get: boshrelease
-    # passed: [testflight]
+    passed: [testflight]
   - task: create-final-release
     file: boshrelease/ci/tasks/create-final-release.yml
     config:
