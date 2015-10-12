@@ -25,26 +25,49 @@ namespace :images do
   end
 
   desc "Package exported images"
-  task :package, [:image] do |_, args|
+  task :package do |_, args|
     include DockerImagePackaging
     include ImageConfig
 
-    images(args[:image]).each do |image|
+    # blobs might be in either/or blobs/docker_layers/* or in config/blobs.yml
+    downloaded_layers = Dir["blobs/docker_layers/*"].map {|b| File.basename(b) }
+    config_layers = YAML.load_file("config/blobs.yml").keys.
+      keep_if {|b| b =~ /^docker_layers/}.
+      map {|b| File.basename(b) }
+    existing_layers = (downloaded_layers + config_layers).uniq
+
+    required_layers = []
+    images.each do |image|
       Dir.mktmpdir do |dir|
-        repackage_image_blobs(source_image_dir(image.tar), dir).tap do |blobs|
-          blobs.each { |b| sh "bosh add blob #{b.blob_target(dir)} #{b.prefix}" }
-          create_package(image.package, blobs.map(&:package_spec_path))
+        required_layers = repackage_image_blobs(source_image_dir(image.tar), dir)
+        new_layers = required_layers - existing_layers
+
+        new_layers.each do |b|
+          unless existing_layers_blobs.include?(b.target)
+            sh "bosh add blob #{b.blob_target(dir)} #{b.prefix}"
+          end
+          required_layers << b.target
         end
+        create_package(image.package, new_layers.map(&:package_spec_path))
       end
     end
+    puts "Removing unused blobs:"
+    remove_layers = existing_layers - required_layers
+
+    blobs = YAML.load_file("config/blobs.yml")
+    remove_layers.each do |layer_file|
+      puts "Removing #{layer_file}..."
+      FileUtils.rm_rf(File.join("blobs/docker_layers", layer_file))
+      blobs.delete(File.join("docker_layers", layer_file))
+    end
+    IO.write("config/blobs.yml", blobs.to_yaml)
   end
 
   task :cleanout do
     FileUtils.rm_rf("blobs/docker_images")
-    FileUtils.rm_rf("blobs/docker_layers")
     file = "config/blobs.yml"
     blobs = YAML.load_file(file)
-    blobs = blobs.keep_if { |blob, _| !(blob =~ /^(docker_layers|docker_images)/) }
+    blobs = blobs.keep_if { |blob, _| !(blob =~ /^(docker_images)/) }
     IO.write(file, blobs.to_yaml)
   end
 end
