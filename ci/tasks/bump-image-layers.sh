@@ -17,7 +17,7 @@ blobstore:
 EOF
 
 cd boshrelease
-bundle
+gem install rake
 
 bosh -n sync blobs
 
