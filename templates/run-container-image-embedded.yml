@@ -13,9 +13,9 @@ meta:
 
 releases:
 - name: docker
-  version: (( meta.release_versions.docker ))
+  version: (( grab meta.release_versions.docker ))
 - name: postgresql-docker
-  version: (( meta.release_versions.postgresql_docker ))
+  version: (( grab meta.release_versions.postgresql_docker ))
 
 properties:
   containers:

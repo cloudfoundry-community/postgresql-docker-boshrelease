@@ -4,4 +4,4 @@ meta:
 
 networks:
 - name: postgresql_docker1
-  subnets: (( meta.subnets ))
+  subnets: (( grab meta.subnets ))

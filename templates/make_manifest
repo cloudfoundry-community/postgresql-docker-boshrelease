@@ -8,6 +8,12 @@ set -e
 template_prefix="postgresql-docker"
 STEMCELL_OS=${STEMCELL_OS:-ubuntu}
 
+if [[ "$(which spruce)X" == "X" ]]; then
+  echo "Please install spruce, the replacement for spiff"
+  echo "See https://github.com/geofffranks/spruce/releases"
+  exit 1
+fi
+
 usage() {
   echo "usage: ./make_manifest <aws|garden|warden> <container|broker> <embedded|upstream>"
   exit 1
@@ -30,7 +36,7 @@ if [[ "${DEMO}X" == "X" ]]; then
   DIRECTOR_UUID=$(echo "$BOSH_STATUS" | grep UUID | awk '{print $2}')
   DIRECTOR_CPI=$(echo "$BOSH_STATUS" | grep CPI | awk '{print $2}')
   DIRECTOR_NAME=$(echo "$BOSH_STATUS" | grep Name | awk '{print $2}')
-  NAME=$template_prefix-$infrastructure
+  NAME=$template_prefix-$infrastructure-$runner-$docker_image
 else
   DIRECTOR_UUID=xxxxxxx-6076-11e5-8e69-6c4008a663f0
   DIRECTOR_CPI=aws
@@ -77,7 +83,7 @@ perl -pi -e "s/PLACEHOLDER-DIRECTOR-UUID/$DIRECTOR_UUID/g" $tmpdir/director.yml
 perl -pi -e "s/NAME/$NAME/g" $tmpdir/name.yml
 perl -pi -e "s/STEMCELL/$STEMCELL/g" $tmpdir/pipeline-inputs.yml
 
-spiff merge \
+spruce merge --prune meta \
   $templates/deployment.yml \
   $templates/jobs.yml \
   $templates/run-${runner}-image-${docker_image}.yml \
@@ -88,11 +94,7 @@ spiff merge \
   $tmpdir/pipeline-inputs.yml \
   $* > $tmpdir/$NAME-manifest.yml
 
-if [[ "$(which humanize-manifest)X" != "X" ]]; then
-  humanize-manifest $tmpdir/$NAME-manifest.yml > $tmpdir/humanized-manifest.yml
-  bosh deployment $tmpdir/humanized-manifest.yml
-else
-  bosh deployment $tmpdir/$NAME-manifest.yml
-fi
-
-bosh status
+spiff diff $tmpdir/$NAME-manifest.yml $tmpdir/spiff/$NAME-manifest.yml
+# bosh deployment $tmpdir/$NAME-manifest.yml
+#
+# bosh status

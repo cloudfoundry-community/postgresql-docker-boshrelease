@@ -16,15 +16,15 @@ meta:
 
 releases:
 - name: docker
-  version: (( meta.release_versions.docker ))
+  version: (( grab meta.release_versions.docker ))
 - name: postgresql-docker
-  version: (( meta.release_versions.postgresql_docker ))
+  version: (( grab meta.release_versions.postgresql_docker ))
 
 properties:
   containers:
     - name: postgresql
-      image: (( meta.postgresql_images.image ))
-      tag: (( meta.postgresql_images.tag ))
+      image: (( grab meta.postgresql_images.image ))
+      tag: (( grab meta.postgresql_images.tag ))
       command: ""
       bind_ports:
         - "514:514"
