@@ -34,9 +34,9 @@ resource_pools:
   - name: small_z1
     cloud_properties:
       name: random
-    stemcell: (( meta.stemcell ))
+    stemcell: (( grab meta.stemcell ))
 
 networks:
 - name: postgresql_docker1
   type: manual
-  subnets: (( meta.subnets ))
+  subnets: (( grab meta.subnets ))

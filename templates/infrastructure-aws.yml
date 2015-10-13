@@ -9,7 +9,7 @@ jobs:
   - name: postgresql_docker_z1
     networks:
       - name: postgresql_docker1
-    persistent_disk: (( meta.persistent_disk ))
+    persistent_disk: (( grab meta.persistent_disk ))
 
 compilation:
   cloud_properties:

@@ -2,7 +2,7 @@ meta:
   name: (( merge ))
   stemcell: (( merge ))
 
-name: (( meta.name ))
+name: (( grab meta.name ))
 
 director_uuid: (( merge ))
 
@@ -30,6 +30,5 @@ update:
 resource_pools:
   - name: small_z1
     network: postgresql_docker1
-    size: (( auto ))
-    stemcell: (( meta.stemcell ))
+    stemcell: (( grab meta.stemcell ))
     cloud_properties: (( merge ))

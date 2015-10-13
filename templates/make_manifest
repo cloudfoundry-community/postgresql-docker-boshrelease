@@ -83,7 +83,7 @@ perl -pi -e "s/PLACEHOLDER-DIRECTOR-UUID/$DIRECTOR_UUID/g" $tmpdir/director.yml
 perl -pi -e "s/NAME/$NAME/g" $tmpdir/name.yml
 perl -pi -e "s/STEMCELL/$STEMCELL/g" $tmpdir/pipeline-inputs.yml
 
-spruce merge \
+spruce merge --prune meta \
   $templates/deployment.yml \
   $templates/jobs.yml \
   $templates/run-${runner}-image-${docker_image}.yml \

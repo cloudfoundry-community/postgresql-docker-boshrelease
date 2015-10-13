@@ -26,26 +26,26 @@ meta:
 
 releases:
 - name: docker
-  version: (( meta.release_versions.docker ))
+  version: (( grab meta.release_versions.docker ))
 - name: postgresql-docker
-  version: (( meta.release_versions.postgresql_docker ))
+  version: (( grab meta.release_versions.postgresql_docker ))
 
 properties:
-  nats: (( meta.nats ))
+  nats: (( grab meta.nats ))
 
   cf:
-    api_url: (( meta.cfcontainersbroker.cc_api_uri ))
+    api_url: (( grab meta.cfcontainersbroker.cc_api_uri ))
 
   broker:
-    name: (( meta.cfcontainersbroker.component_name ))
-    component_name: (( meta.cfcontainersbroker.component_name ))
+    name: (( grab meta.cfcontainersbroker.component_name ))
+    component_name: (( grab meta.cfcontainersbroker.component_name ))
     protocol: http
-    host: (( meta.cfcontainersbroker.external_host ))
+    host: (( grab meta.cfcontainersbroker.external_host ))
     port: 80
-    username: (( meta.cfcontainersbroker.username ))
-    password: (( meta.cfcontainersbroker.password ))
-    cookie_secret: (( meta.cfcontainersbroker.cookie_secret ))
-    max_containers: (( meta.cfcontainersbroker.max_containers ))
+    username: (( grab meta.cfcontainersbroker.username ))
+    password: (( grab meta.cfcontainersbroker.password ))
+    cookie_secret: (( grab meta.cfcontainersbroker.cookie_secret ))
+    max_containers: (( grab meta.cfcontainersbroker.max_containers ))
     fetch_images: false
 
     services:
@@ -69,7 +69,7 @@ properties:
         dashboard_client:
           id: 'docker-client-postgresql93'
           secret: 'docker-client-postgresql94-secret'
-          redirect_uri: (( meta.cfcontainersbroker.protocol "://" meta.cfcontainersbroker.external_host "/manage/auth/cloudfoundry/callback" ))
+          redirect_uri: (( concat meta.cfcontainersbroker.protocol "://" meta.cfcontainersbroker.external_host "/manage/auth/cloudfoundry/callback" ))
         plans:
           - id: '40f402e0-047f-11e5-88d5-6c4008a663f0'
             name: 'free'
@@ -109,7 +109,7 @@ properties:
         dashboard_client:
           id: 'docker-client-postgresql94'
           secret: 'docker-client-postgresql94-secret'
-          redirect_uri: (( meta.cfcontainersbroker.protocol "://" meta.cfcontainersbroker.external_host "/manage/auth/cloudfoundry/callback" ))
+          redirect_uri: (( concat meta.cfcontainersbroker.protocol "://" meta.cfcontainersbroker.external_host "/manage/auth/cloudfoundry/callback" ))
         plans:
           - id: '1545e30e-6dc3-11e5-826a-6c4008a663f0'
             name: 'free'
@@ -150,7 +150,7 @@ properties:
         dashboard_client:
           id: 'docker-client-postgresql95'
           secret: 'docker-client-postgresql95-secret'
-          redirect_uri: (( meta.cfcontainersbroker.protocol "://" meta.cfcontainersbroker.external_host "/manage/auth/cloudfoundry/callback" ))
+          redirect_uri: (( concat meta.cfcontainersbroker.protocol "://" meta.cfcontainersbroker.external_host "/manage/auth/cloudfoundry/callback" ))
         plans:
           - id: '58dc3912-6e11-11e5-96cc-6c4008a663f0'
             name: 'free'
