@@ -139,24 +139,20 @@ cf bs my-app my-pg
 
 ### Versions & configuration
 
-The version of PostgreSQL is determined by the Docker image bundled with the release being used. The source for building the Docker image is in the `images/postgresql` folder of this repo. See below for instructions.
+The version of PostgreSQL is determined by the Docker image bundled with the release being used. The source for building the Docker images is in the `images/` folders of this repo. See below for instructions.
 
 ### Development of postgresql configuration
 
 To push new ideas/new PostgreSQL versions to an alternate Docker Hub image name:
 
 ```
-cd images/postgresql-dev
+cd images/postgresql95
 export DOCKER_USER=<your user>
 docker build -t $DOCKER_USER/postgresql .
-docker push $DOCKER_USER/postgresql
+docker push $DOCKER_USER/postgresql:9.5
 ```
 
-This will create a new Docker image, based upon the upstream `cfcommunity/postgresql:9.4`.
-
-You can now try out new postgresql configuration in `images/postgresql-dev/etc/postgresql/postgresql.conf` and re-build/push the image quickly.
-
-You can now test them using `upstream` templates.
+This will create a new Docker image, based upon the upstream `cfcommunity/postgresql-base:9.5`.
 
 Create an override YAML file, say `my-docker-image.yml`
 
@@ -165,7 +161,7 @@ Create an override YAML file, say `my-docker-image.yml`
 meta:
   postgresql_images:
     image: USERNAME/postgresql
-    tag: latest
+    tag: 9.5
 ```
 
 To deploy this change into BOSH, add the `my-docker-image.yml` file to the end of the `make_manifest` command:
@@ -173,40 +169,4 @@ To deploy this change into BOSH, add the `my-docker-image.yml` file to the end o
 ```
 ./templates/make_manifest warden container upstream my-docker-image.yml
 bosh deploy
-```
-
-### Development of releases
-
-To recreate the Docker image that hosts Logstash & Elastic Search and push it upstream:
-
-```
-cd image
-docker build -t cfcommunity/postgresql:9.4 .
-```
-
-To package the Docker image back into this release:
-
-```
-bosh-gen package postgresql --docker-image cfcommunity/postgresql:9.4
-bosh upload blobs
-```
-
-To create new development releases and upload them:
-
-```
-bosh create release --force && bosh -n upload release
-```
-
-### Final releases
-
-To share final releases, which include the `cfcommunity/postgresql:9.4` docker image embedded:
-
-```
-bosh create release --final
-```
-
-By default the version number will be bumped to the next major number. You can specify alternate versions:
-
-```
-bosh create release --final --version 2.1
 ```
