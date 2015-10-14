@@ -64,8 +64,6 @@ properties:
           providerDisplayName: 'Stark & Wayne LLC'
           documentationUrl: 'https://github.com/cloudfoundry-community/postgresql-docker-boshrelease'
           supportUrl: 'https://github.com/cloudfoundry-community/postgresql-docker-boshrelease/issues'
-        requires:
-          - 'syslog_drain'
         dashboard_client:
           id: 'docker-client-postgresql93'
           secret: 'docker-client-postgresql94-secret'
@@ -79,7 +77,15 @@ properties:
               tag: "9.3"
               persistent_volumes:
                 - '/data'
-            syslog_drain_port: '514/tcp'
+            credentials:
+              username:
+                key: 'POSTGRES_USERNAME'
+              password:
+                key: 'POSTGRES_PASSWORD'
+              dbname:
+                key: 'POSTGRES_DBNAME'
+              uri:
+                prefix: 'postgres'
             description: 'Free Trial'
             metadata:
               costs:
@@ -104,8 +110,6 @@ properties:
           providerDisplayName: 'Stark & Wayne LLC'
           documentationUrl: 'https://github.com/cloudfoundry-community/postgresql-docker-boshrelease'
           supportUrl: 'https://github.com/cloudfoundry-community/postgresql-docker-boshrelease/issues'
-        requires:
-          - 'syslog_drain'
         dashboard_client:
           id: 'docker-client-postgresql94'
           secret: 'docker-client-postgresql94-secret'
@@ -119,7 +123,15 @@ properties:
               tag: "9.4"
               persistent_volumes:
                 - '/data'
-            syslog_drain_port: '514/tcp'
+            credentials:
+              username:
+                key: 'POSTGRES_USERNAME'
+              password:
+                key: 'POSTGRES_PASSWORD'
+              dbname:
+                key: 'POSTGRES_DBNAME'
+              uri:
+                prefix: 'postgres'
             description: 'Free Trial'
             metadata:
               costs:
@@ -145,8 +157,6 @@ properties:
           providerDisplayName: 'Stark & Wayne LLC'
           documentationUrl: 'https://github.com/cloudfoundry-community/postgresql-docker-boshrelease'
           supportUrl: 'https://github.com/cloudfoundry-community/postgresql-docker-boshrelease/issues'
-        requires:
-          - 'syslog_drain'
         dashboard_client:
           id: 'docker-client-postgresql95'
           secret: 'docker-client-postgresql95-secret'
@@ -160,7 +170,15 @@ properties:
               tag: "9.5"
               persistent_volumes:
                 - '/data'
-            syslog_drain_port: '514/tcp'
+            credentials:
+              username:
+                key: 'POSTGRES_USERNAME'
+              password:
+                key: 'POSTGRES_PASSWORD'
+              dbname:
+                key: 'POSTGRES_DBNAME'
+              uri:
+                prefix: 'postgres'
             description: 'Free Trial'
             metadata:
               costs:

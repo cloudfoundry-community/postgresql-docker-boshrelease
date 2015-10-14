@@ -62,11 +62,9 @@ properties:
           providerDisplayName: 'Stark & Wayne LLC'
           documentationUrl: 'https://github.com/cloudfoundry-community/postgresql-docker-boshrelease'
           supportUrl: 'https://github.com/cloudfoundry-community/postgresql-docker-boshrelease/issues'
-        requires:
-          - 'syslog_drain'
         dashboard_client:
           id: 'docker-client-postgresql93'
-          secret: 'docker-client-postgresql93-secret'
+          secret: 'docker-client-postgresql94-secret'
           redirect_uri: (( concat meta.cfcontainersbroker.protocol "://" meta.cfcontainersbroker.external_host "/manage/auth/cloudfoundry/callback" ))
         plans:
           - id: '40f402e0-047f-11e5-88d5-6c4008a663f0'
@@ -77,7 +75,15 @@ properties:
               tag: "9.3"
               persistent_volumes:
                 - '/data'
-            syslog_drain_port: '514/tcp'
+            credentials:
+              username:
+                key: 'POSTGRES_USERNAME'
+              password:
+                key: 'POSTGRES_PASSWORD'
+              dbname:
+                key: 'POSTGRES_DBNAME'
+              uri:
+                prefix: 'postgres'
             description: 'Free Trial'
             metadata:
               costs:
@@ -87,7 +93,6 @@ properties:
               bullets:
                 - 'Dedicated postgresql 9.3 server'
                 - 'Postgresql 9.3 running inside a Docker container'
-
       - id: '0f5c1670-6dc3-11e5-bc08-6c4008a663f0'
         name: 'postgresql94'
         description: 'postgresql 9.4 service for application development and testing'
@@ -103,8 +108,6 @@ properties:
           providerDisplayName: 'Stark & Wayne LLC'
           documentationUrl: 'https://github.com/cloudfoundry-community/postgresql-docker-boshrelease'
           supportUrl: 'https://github.com/cloudfoundry-community/postgresql-docker-boshrelease/issues'
-        requires:
-          - 'syslog_drain'
         dashboard_client:
           id: 'docker-client-postgresql94'
           secret: 'docker-client-postgresql94-secret'
@@ -118,7 +121,15 @@ properties:
               tag: "9.4"
               persistent_volumes:
                 - '/data'
-            syslog_drain_port: '514/tcp'
+            credentials:
+              username:
+                key: 'POSTGRES_USERNAME'
+              password:
+                key: 'POSTGRES_PASSWORD'
+              dbname:
+                key: 'POSTGRES_DBNAME'
+              uri:
+                prefix: 'postgres'
             description: 'Free Trial'
             metadata:
               costs:
@@ -128,6 +139,7 @@ properties:
               bullets:
                 - 'Dedicated postgresql 9.4 server'
                 - 'Postgresql 9.4 running inside a Docker container'
+
       - id: '54784f50-6e11-11e5-8f4d-6c4008a663f0'
         name: 'postgresql95'
         description: 'postgresql 9.5 (beta1) service for application development and testing'
@@ -143,8 +155,6 @@ properties:
           providerDisplayName: 'Stark & Wayne LLC'
           documentationUrl: 'https://github.com/cloudfoundry-community/postgresql-docker-boshrelease'
           supportUrl: 'https://github.com/cloudfoundry-community/postgresql-docker-boshrelease/issues'
-        requires:
-          - 'syslog_drain'
         dashboard_client:
           id: 'docker-client-postgresql95'
           secret: 'docker-client-postgresql95-secret'
@@ -158,7 +168,15 @@ properties:
               tag: "9.5"
               persistent_volumes:
                 - '/data'
-            syslog_drain_port: '514/tcp'
+            credentials:
+              username:
+                key: 'POSTGRES_USERNAME'
+              password:
+                key: 'POSTGRES_PASSWORD'
+              dbname:
+                key: 'POSTGRES_DBNAME'
+              uri:
+                prefix: 'postgres'
             description: 'Free Trial'
             metadata:
               costs:
