@@ -94,7 +94,6 @@ spruce merge --prune meta \
   $tmpdir/pipeline-inputs.yml \
   $* > $tmpdir/$NAME-manifest.yml
 
-spiff diff $tmpdir/$NAME-manifest.yml $tmpdir/spiff/$NAME-manifest.yml
-# bosh deployment $tmpdir/$NAME-manifest.yml
-#
-# bosh status
+bosh deployment $tmpdir/$NAME-manifest.yml
+
+bosh status
