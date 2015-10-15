@@ -7,7 +7,7 @@ EXTENSIONS=${POSTGRES_EXTENSIONS:-}
 cd /var/lib/postgresql
 
 # Start PostgreSQL service
-sudo -u postgres /usr/lib/postgresql/9.3/bin/postgres -D /data &
+sudo -u postgres /usr/lib/postgresql/${PG_VERSION}/bin/postgres -D /data &
 while ! sudo -u postgres psql -q -c "select true;"; do sleep 1; done
 
 # Create user
@@ -37,7 +37,7 @@ EOF
 fi
 
 # Stop PostgreSQL service
-sudo -u postgres /usr/lib/postgresql/9.3/bin/pg_ctl stop -m fast -w -D /data
+sudo -u postgres /usr/lib/postgresql/${PG_VERSION}/bin/pg_ctl stop -m fast -w -D /data
 
 echo "========================================================================"
 echo "PostgreSQL User: \"$USER\""
