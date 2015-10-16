@@ -1,0 +1,16 @@
+---
+platform: linux
+image: docker:///concourse/concourse-ci
+
+inputs:
+- name: boshrelease
+
+params:
+  bosh_target:
+  bosh_username: admin
+  bosh_password: admin
+  deployment_name: postgresql-docker-garden-broker-embedded
+  errand: smoke-tests
+
+run:
+  path: boshrelease/ci/tasks/run-errand.sh

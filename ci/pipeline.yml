@@ -4,6 +4,8 @@ groups:
   jobs: [bump-layers, testflight, shipit, image-pg93, image-pg94, image-pg95]
 - name: base
   jobs: [image-pg93-base, image-pg94-base, image-pg95-base]
+- name: tests
+  jobs: [smoke-tests]
 jobs:
 - name: image-pg93-base
   public: true
@@ -85,6 +87,7 @@ jobs:
 - name: testflight
   public: true
   serial: true
+  serial_groups: [bosh-lite]
   plan:
   - aggregate:
     - {get: docker-image-pg93, passed: [bump-layers], trigger: true, params: {skip_download: true}}
@@ -99,25 +102,35 @@ jobs:
         bosh_username: {{bosh-lite-username}}
         bosh_password: {{bosh-lite-password}}
 
+- name: smoke-tests
+  public: true
+  serial: true
+  serial_groups: [bosh-lite]
+  plan:
+  - get: boshrelease
+  - task: smoke-tests
+    file: boshrelease/ci/tasks/run-errand.yml
+    config:
+      params:
+        bosh_target: {{bosh-lite-target}}
+        bosh_username: {{bosh-lite-username}}
+        bosh_password: {{bosh-lite-password}}
+        deployment_name: postgresql-docker-garden-broker-embedded
+        errand: smoke-tests
+
 - name: shipit
   public: true
   serial: true
   plan:
   - get: boshrelease
     passed: [testflight]
-  - task: create-final-release
-    file: boshrelease/ci/tasks/create-final-release.yml
+  - task: upload-dev-release
+    file: boshrelease/ci/tasks/upload-dev-release.yml
     config:
       params:
-        aws_access_key_id: {{blobstore-aws-accesss}}
-        aws_secret_access_key: {{blobstore-aws-secret}}
         bosh_target: {{bosh-lite-target}}
         bosh_username: {{bosh-lite-username}}
         bosh_password: {{bosh-lite-password}}
-  - put: boshrelease
-    params:
-      repository: create-final-release/boshrelease
-      rebase: true
 
 resources:
 - name: boshrelease
