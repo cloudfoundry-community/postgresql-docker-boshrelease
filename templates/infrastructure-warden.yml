@@ -1,8 +1,10 @@
 meta:
-  subnets: (( merge ))
   cfcontainersbroker:
-    cc_api_uri: "https://api.10.244.0.34.xip.io"
-    external_host: "cf-containers-broker.10.244.0.34.xip.io"
+    root_domain: 10.244.0.34.xip.io
+    apps_domain: (( grab meta.cfcontainersbroker.root_domain ))
+    cc_api_uri: (( concat "https://api." meta.cfcontainersbroker.root_domain ))
+    external_host: (( concat "postgresql-docker-broker." meta.cfcontainersbroker.root_domain ))
+  subnets: (( merge ))
   nats:
     user: nats
     password: nats
@@ -25,6 +27,20 @@ jobs:
     networks:
       - name: postgresql_docker1
         static_ips: ~
+  - name: smoke_tests
+    networks:
+      - name: postgresql_docker1
+        static_ips: ~
+    properties:
+      smoke_tests:
+        api: (( grab meta.cfcontainersbroker.cc_api_uri ))
+        admin_user: admin
+        admin_password: admin
+        apps_domain: (( grab meta.cfcontainersbroker.apps_domain ))
+        skip_ssl_validation: true
+        broker_admin_user: containers
+        broker_admin_password: containers
+        broker_url_base: (( grab meta.cfcontainersbroker.external_host ))
 
 compilation:
   cloud_properties:

@@ -15,5 +15,14 @@ jobs:
     resource_pool: small_z1
     networks: (( merge ))
     persistent_disk: 10240
+  - name: smoke_tests
+    resource_pool: small_z1
+    networks: (( param "please define smoke_tests networks" ))
+    templates:
+    - name: smoke-tests
+      release: postgresql-docker
+    instances: 1
+    lifecycle: errand
+    properties: (( param "please define smoke_tests properties" ))
 
 networks: (( merge ))

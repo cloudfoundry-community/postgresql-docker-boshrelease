@@ -10,6 +10,10 @@ jobs:
     networks:
       - name: postgresql_docker1
     persistent_disk: (( grab meta.persistent_disk ))
+  - name: smoke_tests
+    networks:
+      - name: postgresql_docker1
+        static_ips: ~
 
 compilation:
   cloud_properties:
@@ -23,4 +27,4 @@ resource_pools:
 networks:
 - name: postgresql_docker1
   type: manual
-  subnets: (( merge ))
+  subnets: (( param "please define postgresql_docker1 subnets" ))

@@ -88,7 +88,7 @@ spruce merge --prune meta \
   $templates/jobs.yml \
   $templates/run-${runner}-image-${docker_image}.yml \
   $templates/infrastructure-${infrastructure}.yml \
-  $templates/env-${infrastructure}-networking.yml \
+  $templates/env-networking-${infrastructure}.yml \
   $tmpdir/director.yml \
   $tmpdir/name.yml \
   $tmpdir/pipeline-inputs.yml \
