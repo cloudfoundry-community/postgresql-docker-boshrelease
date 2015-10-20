@@ -3,8 +3,19 @@ groups:
 - name: images
   jobs: [bump-layers, testflight, shipit, image-pg93, image-pg94, image-pg95]
 - name: base
-  jobs: [image-pg93-base, image-pg94-base, image-pg95-base]
+  jobs: [image-pg93-base, image-pg94-base, image-pg95-base, image-pg94-patroni]
+- name: patroni
+  jobs: [image-pg94-patroni]
 jobs:
+- name: image-pg94-patroni
+  public: true
+  serial: true
+  plan:
+  - aggregate:
+    - {get: patroni}
+  - put: docker-image-pg94-patroni
+    params:
+      build: patroni
 - name: image-pg93-base
   public: true
   serial: true
@@ -150,6 +161,22 @@ resources:
     branch: {{pipeline-branch}}
     private_key: {{github-key}}
     paths: [images/postgresql95/*]
+
+- name: patroni
+  type: git
+  source:
+    uri: https://github.com/zalando/patroni.git
+    branch: master
+    private_key: {{github-key}}
+
+- name: docker-image-pg94-patroni
+  type: docker-image
+  source:
+    email: {{docker-hub-email}}
+    username: {{docker-hub-username}}
+    password: {{docker-hub-password}}
+    repository: cfcommunity/patroni
+    tag: "9.4"
 
 - name: docker-image-pg93-base
   type: docker-image
