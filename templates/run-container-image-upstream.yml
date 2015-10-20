@@ -1,5 +1,9 @@
 ---
 meta:
+  postgresql:
+    username: starkandwayne
+    password: pass
+    dbname: starkandwayne
   job_templates:
     # run docker daemon
     - {name: docker, release: docker}
@@ -23,3 +27,7 @@ properties:
       bind_volumes:
         - "/data"
       memory: "1G"
+      env_vars:
+        - (( concat "POSTGRES_USERNAME=" meta.postgresql.username ))
+        - (( concat "POSTGRES_PASSWORD=" meta.postgresql.password ))
+        - (( concat "POSTGRES_DBNAME=" meta.postgresql.dbname ))
