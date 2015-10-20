@@ -15,9 +15,6 @@ meta:
     max_containers: 20
   nats: (( merge ))
 
-  release_versions:
-    docker: (( merge ))
-    postgresql_docker: (( merge ))
   job_templates:
     # run docker daemon
     - {name: docker, release: docker}
@@ -27,9 +24,9 @@ meta:
 
 releases:
 - name: docker
-  version: (( grab meta.release_versions.docker ))
+  version: latest
 - name: postgresql-docker
-  version: (( grab meta.release_versions.postgresql_docker ))
+  version: latest
 
 properties:
   nats: (( grab meta.nats ))

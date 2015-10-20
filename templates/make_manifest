@@ -15,12 +15,11 @@ if [[ "$(which spruce)X" == "X" ]]; then
 fi
 
 usage() {
-  echo "usage: ./make_manifest <aws|garden|warden> <container|broker> <embedded|upstream>"
+  echo "usage: ./make_manifest <aws|warden> <container|broker> <embedded|upstream>"
   exit 1
 }
 
 if [ "$infrastructure" != "aws" ] && \
-    [ "$infrastructure" != "garden" ] && \
     [ "$infrastructure" != "warden" ] ; then
   usage
 fi

@@ -7,53 +7,6 @@ meta:
   # Assumes up to 5 VMs, including 1 static and 4 dynamic.
   # Plus 5 (double the size) unused IPs, due to BOSH bug/quirk.
   subnets:
-  - cloud_properties:
-      name: random
-    range: 10.244.20.0/30
-    reserved:
-    - 10.244.20.1
-    static:
-    - 10.244.20.2
-  - cloud_properties:
-      name: random
-    range: 10.244.20.4/30
-    reserved:
-    - 10.244.20.5
-    static:
-    - 10.244.20.6
-  - cloud_properties:
-      name: random
-    range: 10.244.20.8/30
-    reserved:
-    - 10.244.20.9
-    static: []
-  - cloud_properties:
-      name: random
-    range: 10.244.20.12/30
-    reserved:
-    - 10.244.20.13
-    static: []
-  - cloud_properties:
-      name: random
-    range: 10.244.20.16/30
-    reserved:
-    - 10.244.20.17
-    static: []
-  - cloud_properties:
-      name: random
-    range: 10.244.20.20/30
-    reserved:
-    - 10.244.20.21
-    static: []
-  - cloud_properties:
-      name: random
-    range: 10.244.20.24/30
-    reserved:
-    - 10.244.20.25
-    static: []
-  - cloud_properties:
-      name: random
-    range: 10.244.20.28/30
-    reserved:
-    - 10.244.20.29
-    static: []
+  - range: 10.244.20.0/24
+    gateway: 10.244.20.1
+    static: [10.244.20.2, 10.244.20.3, 10.244.20.4, 10.244.20.5]

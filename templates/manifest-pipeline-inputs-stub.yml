@@ -1,8 +1,5 @@
 ---
 meta:
-  release_versions:
-    postgresql_docker: latest
-    docker: latest
   stemcell:
     name: STEMCELL
     version: latest

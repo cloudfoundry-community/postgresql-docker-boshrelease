@@ -1,8 +1,5 @@
 ---
 meta:
-  release_versions:
-    docker: (( merge ))
-    postgresql_docker: (( merge ))
   job_templates:
     # run docker daemon
     - {name: docker, release: docker}
@@ -13,20 +10,17 @@ meta:
 
 releases:
 - name: docker
-  version: (( grab meta.release_versions.docker ))
+  version: latest
 - name: postgresql-docker
-  version: (( grab meta.release_versions.postgresql_docker ))
+  version: latest
 
 properties:
   containers:
     - name: postgresql
-      image: cfcommunity/postgresql
-      tag: "9.3"
+      image: cfcommunity/postgresql:9.4
       command: ""
       bind_ports:
-        - "514:514"
-        - "9200:9200"
-        - "9300:9300"
+        - "5432:5432"
       bind_volumes:
         - "/data"
       memory: "1G"
