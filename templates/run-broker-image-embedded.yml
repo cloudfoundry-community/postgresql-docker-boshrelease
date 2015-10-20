@@ -1,8 +1,8 @@
 ---
 meta:
   cfcontainersbroker:
-    cc_api_uri: (( merge ))
-    external_host: (( merge ))
+    cc_api_uri: (( params "please provide CF api url" ))
+    external_host: (( params "please provide the hostname to advertise for the broker" ))
     username: containers
     password: containers
     cookie_secret: 'e7247dae-a252-4393-afa3-2219c1c02efd'
@@ -10,7 +10,7 @@ meta:
     ssl_enabled: true
     component_name: postgresql-docker-broker
     max_containers: 20
-  nats: (( merge ))
+  nats: (( params "please provide CF router's NATS info" ))
 
   job_templates:
     # run docker daemon
@@ -64,7 +64,7 @@ properties:
         dashboard_client:
           id: 'docker-client-postgresql93'
           secret: 'docker-client-postgresql94-secret'
-          redirect_uri: (( concat meta.cfcontainersbroker.protocol "://" meta.cfcontainersbroker.external_host "/manage/auth/cloudfoundry/callback" ))
+          redirect_uri: (( concat properties.broker.protocol "://" properties.broker.host "/manage/auth/cloudfoundry/callback" ))
         plans:
           - id: '40f402e0-047f-11e5-88d5-6c4008a663f0'
             name: 'free'
@@ -110,7 +110,7 @@ properties:
         dashboard_client:
           id: 'docker-client-postgresql94'
           secret: 'docker-client-postgresql94-secret'
-          redirect_uri: (( concat meta.cfcontainersbroker.protocol "://" meta.cfcontainersbroker.external_host "/manage/auth/cloudfoundry/callback" ))
+          redirect_uri: (( concat properties.broker.protocol "://" properties.broker.host "/manage/auth/cloudfoundry/callback" ))
         plans:
           - id: '1545e30e-6dc3-11e5-826a-6c4008a663f0'
             name: 'free'
@@ -157,7 +157,7 @@ properties:
         dashboard_client:
           id: 'docker-client-postgresql95'
           secret: 'docker-client-postgresql95-secret'
-          redirect_uri: (( concat meta.cfcontainersbroker.protocol "://" meta.cfcontainersbroker.external_host "/manage/auth/cloudfoundry/callback" ))
+          redirect_uri: (( concat properties.broker.protocol "://" properties.broker.host "/manage/auth/cloudfoundry/callback" ))
         plans:
           - id: '58dc3912-6e11-11e5-96cc-6c4008a663f0'
             name: 'free'
