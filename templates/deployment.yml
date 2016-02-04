@@ -1,24 +1,12 @@
 meta:
-  name: (( merge ))
-  stemcell: (( merge ))
 
 name: (( grab meta.name ))
 
-director_uuid: (( merge ))
-
-releases: (( merge ))
-
-networks: (( merge ))
-
-jobs: (( merge ))
-
-properties: (( merge ))
 
 compilation:
   workers: 6
   network: postgresql_docker1
   reuse_compilation_vms: true
-  cloud_properties: (( merge ))
 
 update:
   canaries: 1
@@ -31,4 +19,3 @@ resource_pools:
   - name: small_z1
     network: postgresql_docker1
     stemcell: (( grab meta.stemcell ))
-    cloud_properties: (( merge ))

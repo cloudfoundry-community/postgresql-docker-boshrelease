@@ -1,5 +1,4 @@
 meta:
-  job_templates: (( merge ))
 
 update:
   canaries: 1
@@ -13,7 +12,5 @@ jobs:
     templates: (( grab meta.job_templates ))
     instances: 1
     resource_pool: small_z1
-    networks: (( merge ))
     persistent_disk: 10240
 
-networks: (( merge ))
