@@ -70,7 +70,7 @@ $ bosh vms postgresql-docker-warden
 +------------------------+---------+---------------+--------------+
 | Job/index              | State   | Resource Pool | IPs          |
 +------------------------+---------+---------------+--------------+
-| postgresql_docker_z1/0 | running | small_z1      | 10.244.20.10 |
+| postgresql_docker_z1/0 | running | small_z1      | 10.244.20.6  |
 +------------------------+---------+---------------+--------------+
 ```
 
@@ -84,7 +84,7 @@ bosh -n deploy
 To register your Logstash with a Cloud Foundry application on bosh-lite/warden:
 
 ```
-cf cups postgresql -l syslog://10.244.20.10:514
+cf cups postgresql -l syslog://10.244.20.6:514
 ```
 
 Now bind it to your applications and their STDOUT/STDERR logs will automatically stream to your PostgreSQL.
@@ -109,14 +109,14 @@ $ bosh vms postgresql-docker-warden
 +------------------------+---------+---------------+--------------+
 | Job/index              | State   | Resource Pool | IPs          |
 +------------------------+---------+---------------+--------------+
-| postgresql_docker_z1/0 | running | small_z1      | 10.244.20.10 |
+| postgresql_docker_z1/0 | running | small_z1      | 10.244.20.6 |
 +------------------------+---------+---------------+--------------+
 ```
 
 As a Cloud Foundry admin, you can register the broker and the service it provides:
 
 ```
-cf create-service-broker postgresql-docker containers containers http://10.244.20.10
+cf create-service-broker postgresql-docker containers containers http://10.244.20.6
 cf enable-service-access postgresql93
 cf marketplace
 ```
