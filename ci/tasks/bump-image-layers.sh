@@ -17,7 +17,7 @@ blobstore:
 EOF
 
 # set base dir for Rakefile's source_image_dir helper
-IMAGE_BASE_DIR=$(pwd)/images
+export IMAGE_BASE_DIR=$(pwd)/images
 
 git clone boshrelease boshrelease-images-updated
 
