@@ -19,7 +19,9 @@ EOF
 # set base dir for Rakefile's source_image_dir helper
 IMAGE_BASE_DIR=$(pwd)/images
 
-cd boshrelease
+git clone boshrelease boshrelease-images-updated
+
+cd boshrelease-images-updated
 gem install rake --no-ri --no-rdoc
 
 bosh -n sync blobs

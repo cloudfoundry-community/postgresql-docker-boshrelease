@@ -11,6 +11,9 @@ inputs:
 - name: docker-image-pg95
   path: images/cfcommunity_postgresql_9_5_image
 
+outputs:
+- name: boshrelease-images-updated
+
 params:
   aws_access_key_id:
   aws_secret_access_key:

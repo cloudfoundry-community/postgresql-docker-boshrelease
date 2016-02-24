@@ -80,7 +80,7 @@ jobs:
         aws_access_key_id: {{blobstore-aws-accesss}}
         aws_secret_access_key: {{blobstore-aws-secret}}
   - put: boshrelease
-    params: {repository: bump-image-blob/boshrelease, rebase: true}
+    params: {repository: boshrelease-images-updated, rebase: true}
 
 - name: testflight
   public: true
