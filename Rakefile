@@ -169,6 +169,7 @@ module DockerImagePackaging
   def repackage_image_blobs(image_tar, tmp_layers_dir)
     Dir.chdir(tmp_layers_dir) do
       sh "tar -xf #{image_tar}"
+      sh "tree"
 
       blobs = Dir.glob("*/").map! do |d|
                Blob.new(d.chop, d.chop, 'docker_layers')
