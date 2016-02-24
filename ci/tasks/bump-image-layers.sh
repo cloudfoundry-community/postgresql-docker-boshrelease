@@ -26,6 +26,9 @@ gem install rake --no-ri --no-rdoc
 
 bosh -n sync blobs
 
+apt-get tree -y
+tree ${IMAGE_BASE_DIR}
+
 rake images:cleanout
 rake images:package
 rake jobs:update_spec
