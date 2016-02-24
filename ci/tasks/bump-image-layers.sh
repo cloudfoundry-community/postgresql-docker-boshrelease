@@ -16,6 +16,9 @@ blobstore:
     secret_access_key: ${aws_secret_access_key}
 EOF
 
+# set base dir for Rakefile's source_image_dir helper
+IMAGE_BASE_DIR=$(pwd)/images
+
 cd boshrelease
 gem install rake --no-ri --no-rdoc
 
