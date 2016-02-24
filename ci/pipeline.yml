@@ -69,9 +69,9 @@ jobs:
   serial_groups: [boshrelease]
   plan:
   - aggregate:
-    - {get: docker-image-pg93, passed: [image-pg93], trigger: true}
-    - {get: docker-image-pg94, passed: [image-pg94], trigger: true}
-    - {get: docker-image-pg95, passed: [image-pg95], trigger: true}
+    - {get: docker-image-pg93, passed: [image-pg93], trigger: true, params: {save: true}}
+    - {get: docker-image-pg94, passed: [image-pg94], trigger: true, params: {save: true}}
+    - {get: docker-image-pg95, passed: [image-pg95], trigger: true, params: {save: true}}
     - {get: boshrelease}
   - task: bump-image-blob
     file: boshrelease/ci/tasks/bump-image-layers.yml
@@ -87,9 +87,9 @@ jobs:
   serial: true
   plan:
   - aggregate:
-    - {get: docker-image-pg93, passed: [bump-layers], trigger: true, params: {skip_download: true}}
-    - {get: docker-image-pg94, passed: [bump-layers], trigger: true, params: {skip_download: true}}
-    - {get: docker-image-pg95, passed: [bump-layers], trigger: true, params: {skip_download: true}}
+    - {get: docker-image-pg93, passed: [bump-layers], trigger: true}
+    - {get: docker-image-pg94, passed: [bump-layers], trigger: true}
+    - {get: docker-image-pg95, passed: [bump-layers], trigger: true}
     - {get: boshrelease, passed: [bump-layers]}
   - task: upload-dev-release
     file: boshrelease/ci/tasks/upload-dev-release.yml
