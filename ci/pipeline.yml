@@ -223,7 +223,7 @@ resources:
   type: git
   source:
     uri: git@github.com:cloudfoundry-community/postgresql-docker-boshrelease.git
-    branch: {{tile-branch}}
+    branch: {{pipeline-branch}}
     private_key: {{github-key}}
     paths: [ci/ci_image/*]
 
