@@ -122,11 +122,10 @@ jobs:
 - name: build-task-image
   serial: true
   plan:
-  - get: docker-image-tile
-    trigger: true
-  - put: docker-image
+  - {get: boshrelease-ci-task, trigger: true}
+  - put: docker-image-ci
     params:
-      build: docker-image-tile/ci/ci_image
+      build: boshrelease-ci-task/ci/ci_image
 
 resources:
 - name: boshrelease
@@ -142,6 +141,14 @@ resources:
     uri: git@github.com:cloudfoundry-community/postgresql-docker-boshrelease.git
     branch: {{pipeline-branch}}
     private_key: {{github-key}}
+
+- name: boshrelease-ci-task
+  type: git
+  source:
+    uri: git@github.com:cloudfoundry-community/postgresql-docker-boshrelease.git
+    branch: {{pipeline-branch}}
+    private_key: {{github-key}}
+    paths: [ci/ci_image/*]
 
 - name: boshrelease-image-pg93
   type: git
@@ -221,15 +228,7 @@ resources:
     repository: cfcommunity/postgresql
     tag: "9.5"
 
-- name: docker-image-tile
-  type: git
-  source:
-    uri: git@github.com:cloudfoundry-community/postgresql-docker-boshrelease.git
-    branch: {{pipeline-branch}}
-    private_key: {{github-key}}
-    paths: [ci/ci_image/*]
-
-- name: docker-image
+- name: docker-image-ci
   type: docker-image
   source:
     email: {{docker-hub-email}}
