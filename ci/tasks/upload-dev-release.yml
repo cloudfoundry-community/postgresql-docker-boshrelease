@@ -4,6 +4,7 @@ image: docker:///concourse/concourse-ci
 
 inputs:
 - name: boshrelease
+- name: boshrelease-ci
 
 params:
   bosh_target:
@@ -11,4 +12,4 @@ params:
   bosh_password: admin
 
 run:
-  path: boshrelease/ci/tasks/upload-dev-release.sh
+  path: boshrelease-ci/ci/tasks/upload-dev-release.sh

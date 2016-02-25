@@ -91,8 +91,9 @@ jobs:
     - {get: docker-image-pg94, passed: [bump-layers], trigger: true}
     - {get: docker-image-pg95, passed: [bump-layers], trigger: true}
     - {get: boshrelease, passed: [bump-layers]}
+    - {get: boshrelease-ci}
   - task: upload-dev-release
-    file: boshrelease/ci/tasks/upload-dev-release.yml
+    file: boshrelease-ci/ci/tasks/upload-dev-release.yml
     config:
       params:
         bosh_target: {{bosh-lite-target}}
@@ -121,6 +122,13 @@ jobs:
 
 resources:
 - name: boshrelease
+  type: git
+  source:
+    uri: git@github.com:cloudfoundry-community/postgresql-docker-boshrelease.git
+    branch: {{pipeline-branch}}
+    private_key: {{github-key}}
+
+- name: boshrelease-ci
   type: git
   source:
     uri: git@github.com:cloudfoundry-community/postgresql-docker-boshrelease.git
