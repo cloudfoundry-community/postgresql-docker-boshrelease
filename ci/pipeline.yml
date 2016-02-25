@@ -4,6 +4,8 @@ groups:
   jobs: [bump-layers, testflight, shipit, image-pg93, image-pg94, image-pg95]
 - name: base
   jobs: [image-pg93-base, image-pg94-base, image-pg95-base]
+- name: ci
+  jobs: [build-task-image]
 jobs:
 - name: image-pg93-base
   public: true
