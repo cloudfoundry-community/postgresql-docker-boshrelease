@@ -22,6 +22,8 @@ EOF
 cd boshrelease
 bosh target ${bosh_target}
 
+apt-get -yy install file # TODO missing from upstream
+
 bosh create release --name postgresql-docker --with-tarball
 bosh -n upload release --rebase
 
