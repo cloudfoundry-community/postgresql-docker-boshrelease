@@ -1,7 +1,7 @@
 FROM concourse/concourse-ci
 # https://github.com/concourse/concourse/blob/master/ci/dockerfiles/concourse-ci/Dockerfile
 
-RUN apt-get update && apt-get install file && \
+RUN apt-get update && apt-get install file -y && \
     apt-get clean
 
 ADD https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64 /usr/bin/jq
