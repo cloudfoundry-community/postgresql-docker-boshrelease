@@ -117,6 +117,15 @@ jobs:
       repository: create-final-release/boshrelease
       rebase: true
 
+- name: build-task-image
+  serial: true
+  plan:
+  - get: docker-image-tile
+    trigger: true
+  - put: docker-image
+    params:
+      build: docker-image-tile/ci/ci_image
+
 resources:
 - name: boshrelease
   type: git
@@ -209,3 +218,19 @@ resources:
     password: {{docker-hub-password}}
     repository: cfcommunity/postgresql
     tag: "9.5"
+
+- name: docker-image-tile
+  type: git
+  source:
+    uri: git@github.com:cloudfoundry-community/postgresql-docker-boshrelease.git
+    branch: {{tile-branch}}
+    private_key: {{github-key}}
+    paths: [ci/ci_image/*]
+
+- name: docker-image
+  type: docker-image
+  source:
+    email: {{docker-hub-email}}
+    username: {{docker-hub-username}}
+    password: {{docker-hub-password}}
+    repository: cfcommunity/postgresql-docker-boshrelease-pipeline
