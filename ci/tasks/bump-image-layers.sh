@@ -8,7 +8,13 @@ if [[ "${aws_access_key_id}X" == "X" ]]; then
   exit 1
 fi
 
-cat > boshrelease/config/private.yml << EOF
+# set base dir for Rakefile's source_image_dir helper
+export IMAGE_BASE_DIR=$(pwd)/images
+
+git clone boshrelease boshrelease-images-updated
+
+cd boshrelease-images-updated
+cat > config/private.yml << EOF
 ---
 blobstore:
   s3:
@@ -16,12 +22,6 @@ blobstore:
     secret_access_key: ${aws_secret_access_key}
 EOF
 
-# set base dir for Rakefile's source_image_dir helper
-export IMAGE_BASE_DIR=$(pwd)/images
-
-git clone boshrelease boshrelease-images-updated
-
-cd boshrelease-images-updated
 gem install rake --no-ri --no-rdoc
 
 bosh -n sync blobs
