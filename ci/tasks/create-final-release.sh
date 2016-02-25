@@ -4,10 +4,6 @@ set -e
 
 release_name=${release_name:-"postgresql-docker"}
 
-# change to root of bosh release
-DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
-cd $DIR/../..
-
 cat > ~/.bosh_config << EOF
 ---
 aliases:
@@ -19,6 +15,9 @@ auth:
     password: ${bosh_password}
 EOF
 bosh target ${bosh_target}
+
+git clone boshrelease final-release
+cd final-release
 
 cat > config/private.yml << EOF
 ---

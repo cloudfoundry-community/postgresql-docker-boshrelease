@@ -4,6 +4,7 @@ image: docker:///cfcommunity/postgresql-docker-boshrelease-pipeline
 
 inputs:
 - name: boshrelease
+- name: boshrelease-ci
 - name: docker-image-pg93
   path: images/cfcommunity_postgresql_9_3_image
 - name: docker-image-pg94
@@ -19,4 +20,4 @@ params:
   aws_secret_access_key:
 
 run:
-  path: boshrelease/ci/tasks/bump-image-layers.sh
+  path: boshrelease-ci/ci/tasks/bump-image-layers.sh

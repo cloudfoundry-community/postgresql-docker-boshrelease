@@ -4,6 +4,10 @@ image: docker:///cfcommunity/postgresql-docker-boshrelease-pipeline
 
 inputs:
 - {name: boshrelease}
+- {name: boshrelease-ci}
+
+outputs:
+- {name: final-release}
 
 params:
   aws_access_key_id:
@@ -13,5 +17,5 @@ params:
   bosh_password: admin
 
 run:
-  path: ./boshrelease/ci/tasks/create-final-release.sh
+  path: ./boshrelease-ci/ci/tasks/create-final-release.sh
   args: []
