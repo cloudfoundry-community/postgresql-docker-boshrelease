@@ -59,75 +59,27 @@ docker_layers/c6c64a2ca95264fc997abe62472096d6cf648afee96c8e00780bf70fe02cbc87.t
   object_id: d823c357-b278-4631-8cdf-47336078033a
   sha: 8aba0446981d9316aaa438fd580155350617d2fe
   size: 51114569
-docker_layers/63414b23f63be563f5eaf4bc013c24b598a224dabc6fa3646658e97a0ac7e23b.tgz:
-  object_id: e4e70a4f-6e50-48e5-9379-ace9a37abfac
-  sha: b9d21990b19955bbe4c94ffbd41e7dfa511731e0
-  size: 164394
-docker_layers/8e4c82f1fb7b25bef8a2bed1eb0c1ecd2c9830353e35392a2866dac703d10c26.tgz:
-  object_id: 37c97ebb-ec0f-4e9a-bf25-2f6e529de9a0
-  sha: b73583645cdf7db7735e2d81f0082db45dbd77fb
-  size: 2101
-docker_layers/a8e41c9a6134fa1c53b9df5faea986806928b60e577a85021ab4411d86adc497.tgz:
-  object_id: ff234f15-d443-425c-8de9-7745dd0646d2
-  sha: e2771caefc7972b3fffb9671ca81052ba4c471ab
-  size: 2102
-docker_layers/b771762d6efa38ab6fb3720a63933fba3c69120a68fce4e1fca16311f8c20dc4.tgz:
-  object_id: ccf7d5ef-bbd7-40c8-b704-76a1b0e77844
-  sha: fd6f423a6e10081516bde5bc86647ef61c37fd0f
-  size: 164795
-docker_layers/384464003005d53270dbc6d30100512aea89d6b37329a3e203f75cb35d82c8cc.tgz:
-  object_id: 4f369a7f-8562-49f2-9f7a-4ec5ac0678fe
-  sha: 32ec08b3f3725bb51675db1e0c6159a67a309994
-  size: 522
-docker_layers/ff345ae556c3ac370e872347bb0b6e2ec8be95f38a34f5a0ca25cea2ee0a340e.tgz:
-  object_id: f7f39eed-bb6c-4ec4-a5d8-f3b8f49b619f
-  sha: 939c50334c6a924432feea028cda4a663a36f5c5
-  size: 67801972
-docker_layers/080d4afe5712dc288591376956be66198650a9d013bb6b9c0927a1faa5e03402.tgz:
-  object_id: 87050df7-1ad3-43cd-940f-feed797775cd
-  sha: d19362d6a63d90a2bf5570d7b3f10fb791bee159
-  size: 68056265
-docker_layers/e130f25771865cc5ed1382ec5582ed5341bb0bd92de153d0c06795d2e05755d0.tgz:
-  object_id: 80b4beda-2341-42a3-adcd-4aca0aa3b231
-  sha: c0947e43863cc11cd5046465317012c95ea34e38
-  size: 164796
-docker_layers/172e9350db91568f08838f90676d817140f3ed3a91b2e4a4725bd11e0e1ad537.tgz:
-  object_id: b583487c-5a3d-48e7-9aa5-d7940dfdd198
-  sha: a86c22f7d0ae3f58042133120dc56ee5a1e05512
-  size: 520
-docker_layers/905bf3359b310168a3ff091bd819d09b06c273b06494687cd0b1a60cedd0afce.tgz:
-  object_id: 21e6613c-fa31-4feb-94ce-3f5afcc413e4
-  sha: 972f79fd27faace42c96889cbc4abef2b200412c
-  size: 2099
-docker_layers/2b6e6cf582f7a48aa2da321ce4fcd37d8e283ecdbee36735a7e44bba22806282.tgz:
-  object_id: 4bbfbd74-049a-4b1a-b1de-59b0dc881f6b
-  sha: fbec1669b72ed446b44c50d49196d69be95cbd5a
-  size: 164393
-docker_layers/0a57eaf721bec3cfab3b2e640f2916342144b226c7e77eb2665360554d86f543.tgz:
-  object_id: 852d8d3b-e793-4b6f-a4a1-213d588bf810
-  sha: 0829285058024be38ce13c1d11e69d3b7e6aadde
-  size: 2095
 docker_images/7c920fd8981f4c6c27dcfbb572d09ca099ef4ff27409461f84c905be531e40e3.json.tgz:
-  object_id: e15e9377-4206-4261-b1b4-7e6f97b7d654
-  sha: af64c229fcff068108132bdee09b2ac8edf160ad
+  object_id: 5988bd60-477e-4899-99fd-17bc02180072
+  sha: 2e6a071101d85e804d24cfe66258014fd32b8d56
   size: 2658
 docker_images/cfcommunity_postgresql_9_3_image.tgz:
-  object_id: d2261eef-afb1-493a-a62c-fe49dbe51042
-  sha: dbfb352f25b962faaf057f200e32d289560a5873
+  object_id: 596f605e-c502-4591-a95a-8ee9f6e03903
+  sha: edd5a995683ced7f0f1a756447ac966ee516eb70
   size: 820
 docker_images/d279943d6e4018f7160d3e666fe11a27c0dcba24bc4f6d31952eb6e31e162c32.json.tgz:
-  object_id: b4bbc533-b6b4-41d7-a70a-57ac1ae57a73
-  sha: c3f6f11fca2b3ee25a2f2147ca7270baaedbc7f9
+  object_id: bb50b2bc-a663-4d6f-b853-b01f95f27b42
+  sha: 05a804e11db005830ed6181e60f6759c4f73c0fe
   size: 2662
 docker_images/cfcommunity_postgresql_9_4_image.tgz:
-  object_id: 383fae8c-4f7f-41fc-a38b-51c2135c0c63
-  sha: c3108e92b0b6e248e0cef8ed23fcdc7c1fdc0cd6
+  object_id: a6bad203-b8ee-4040-a64d-c2c21be4a3fd
+  sha: b0e31a652dbcd3af9665cfa1ba35be7cb838a20f
   size: 819
 docker_images/65b98a15d8b2ad0a9eb9ffde17804d136005e53ee83816c44f627f08f0f5657d.json.tgz:
-  object_id: a009751e-7a81-4696-986f-bdb150a0ecd3
-  sha: ae8de5f84603dce5af17738ce9e000e1da4de9b8
+  object_id: d24da491-9c90-4181-96a8-c77a30110c2e
+  sha: b323cf3044af37f39680166846c5abfc93aee977
   size: 2658
 docker_images/cfcommunity_postgresql_9_5_image.tgz:
-  object_id: b097c2e5-8d3e-412e-9d09-14ee680001c4
-  sha: cc6b55176adc23c5be1c1ac14a2c7f08818bb6e5
+  object_id: 7197376d-1817-4490-a830-14b76ca452e3
+  sha: 434cf469432d042b9b2f8319aa71c72b13e423a0
   size: 822
