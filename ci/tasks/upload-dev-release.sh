@@ -27,5 +27,5 @@ apt-get -yy install file # TODO missing from upstream
 bosh create release --name postgresql-docker
 bosh -n upload release --rebase
 
-./templates/make_manifest garden broker embedded
+./templates/make_manifest warden broker embedded
 bosh -n deploy
