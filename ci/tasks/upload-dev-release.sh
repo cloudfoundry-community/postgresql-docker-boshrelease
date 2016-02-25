@@ -27,5 +27,8 @@ apt-get -yy install file # TODO missing from upstream
 bosh create release --name postgresql-docker
 bosh -n upload release --rebase
 
+# until otherwise need, assume we want to test with latest docker-boshrelease
+bosh upload release https://bosh.io/d/github.com/cf-platform-eng/docker-boshrelease
+
 ./templates/make_manifest warden broker embedded
 bosh -n deploy
