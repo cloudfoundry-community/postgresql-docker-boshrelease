@@ -171,10 +171,16 @@ module DockerImagePackaging
       sh "tar -xf #{image_tar}"
       sh "tree"
 
+      # Blob.new(source, target_name, prefix)
       blobs = Dir.glob("*/").map! do |d|
                Blob.new(d.chop, d.chop, 'docker_layers')
       end
-      blobs << Blob.new('repositories', File.basename(File.dirname(image_tar)), 'docker_images')
+      Dir.glob("*.json") do |json|
+        sh "cat #{json}"
+        blobs << Blob.new(json, File.basename(json), 'docker_images')
+      end
+      sh "cat manifest.json"
+      blobs << Blob.new('manifest.json', File.basename(File.dirname(image_tar)), 'docker_images')
 
       package_blobs(blobs)
     end
