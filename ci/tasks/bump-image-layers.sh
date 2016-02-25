@@ -22,8 +22,6 @@ blobstore:
     secret_access_key: ${aws_secret_access_key}
 EOF
 
-gem install rake --no-ri --no-rdoc
-
 bosh -n sync blobs
 
 apt-get install tree -y
