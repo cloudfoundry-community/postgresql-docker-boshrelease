@@ -24,5 +24,4 @@ files:
 - docker_layers/06e56e2e2bfdea21fc1d8facf543b58757e88e2823e170375b4c1ff35ec42004.tgz
 - docker_layers/ba483f4d016f4b691435f5f0ce5f541ca7be2551bd0be184135264e61341dcd8.tgz
 - docker_images/9fbb042227f82f8601a487dd08e38507be475231e22e1ad1384c93ebf6e2d75f.json.tgz
-- docker_images/manifest.json.tgz
 - docker_images/cfcommunity_postgresql_9_5_image.tgz
