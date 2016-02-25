@@ -176,10 +176,9 @@ module DockerImagePackaging
                Blob.new(d.chop, d.chop, 'docker_layers')
       end
       Dir.glob("*.json") do |json|
-        sh "cat #{json}"
+        next if json =~ /manifest.json^/
         blobs << Blob.new(json, File.basename(json), 'docker_images')
       end
-      sh "cat manifest.json"
       blobs << Blob.new('manifest.json', File.basename(File.dirname(image_tar)), 'docker_images')
 
       package_blobs(blobs)
