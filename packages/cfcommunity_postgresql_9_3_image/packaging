@@ -1,7 +1,4 @@
 set -e; set -u
-
-apt-get install tree -y; tree
-
 cd docker_layers
 for layer in *.tgz; do tar -xf "$layer"; rm "$layer"; done
 tar -xf ../docker_images/*.tgz
