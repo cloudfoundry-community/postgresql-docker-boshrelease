@@ -10,10 +10,7 @@ RUN DEBIAN_FRONTEND=noninteractive \
     apt-get update && \
     apt-get install -y --force-yes \
       postgresql-${PG_VERSION} \
-      postgresql-client-${PG_VERSION} \
-      postgresql-contrib-${PG_VERSION} \
       postgresql-${PG_VERSION}-postgis-${POSTGIS_VERSION} \
-      postgresql-${PG_VERSION}-pgrouting \
-      postgis && \
+      postgresql-${PG_VERSION}-pgrouting && \
     service postgresql stop && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
