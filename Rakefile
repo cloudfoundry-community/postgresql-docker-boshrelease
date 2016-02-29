@@ -16,8 +16,6 @@ namespace :images do
   desc "Export docker images locally; in Concourse get them via resources"
   task :pull, [:image] do |_, args|
     include ImageConfig
-    sh "docker -v"
-    sh "docker version"
     images(args[:image]).each do |image|
       sh "docker pull #{image.name}" if ENV["DOCKER_PULL"]
       FileUtils.mkdir_p(source_image_dir(File.dirname(image.tar)))
@@ -29,7 +27,9 @@ namespace :images do
   task :package do |_, args|
     include DockerImagePackaging
     include ImageConfig
-
+    
+    sh "docker -v"
+    sh "docker version"
     # blobs might be in either/or blobs/docker_layers/* or in config/blobs.yml
     downloaded_layers = Dir["blobs/docker_layers/*"].map {|b| File.basename(b) }
     config_layers = YAML.load_file("config/blobs.yml").keys.
