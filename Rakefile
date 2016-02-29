@@ -28,7 +28,6 @@ namespace :images do
     include DockerImagePackaging
     include ImageConfig
     
-    sh "docker -v"
     sh "docker version"
     # blobs might be in either/or blobs/docker_layers/* or in config/blobs.yml
     downloaded_layers = Dir["blobs/docker_layers/*"].map {|b| File.basename(b) }
