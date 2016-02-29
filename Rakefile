@@ -16,7 +16,8 @@ namespace :images do
   desc "Export docker images locally; in Concourse get them via resources"
   task :pull, [:image] do |_, args|
     include ImageConfig
-
+    sh "docker -v"
+    sh "docker version"
     images(args[:image]).each do |image|
       sh "docker pull #{image.name}" if ENV["DOCKER_PULL"]
       FileUtils.mkdir_p(source_image_dir(File.dirname(image.tar)))
