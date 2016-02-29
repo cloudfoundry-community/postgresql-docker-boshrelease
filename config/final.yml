@@ -1,6 +1,0 @@
----
-final_name: postgresql-docker
-blobstore:
-  provider: s3
-  options:
-    bucket_name: postgresql-docker-boshrelease

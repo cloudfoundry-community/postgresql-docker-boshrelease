@@ -1,8 +1,0 @@
-set -e; set -u
-
-mkdir bits
-cd bits
-for layer in ../docker_layers/*.tgz; do tar -xf "$layer"; done
-for layer in ../docker_images/*.tgz; do tar -xf "$layer"; done
-tar -zcf image.tgz ./*
-cp -a image.tgz $BOSH_INSTALL_TARGET
