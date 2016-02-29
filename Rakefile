@@ -41,7 +41,6 @@ namespace :images do
       Dir.mktmpdir do |dir|
         required_blobs = repackage_image_blobs(source_image_dir(image.tar), dir)
 
-        required_layers = []
         required_blobs.each do |b|
           unless existing_layers.include?(b.target)
             sh "bosh add blob #{b.blob_target(dir)} #{b.prefix}"
