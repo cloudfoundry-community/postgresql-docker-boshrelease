@@ -5,5 +5,5 @@ Update pipeline
 ---------------
 
 ```
-fly -t snw c postgresql-docker-images -c ci/pipeline.yml --vf ci/credentials.yml
+fly -t oss sp -p $(basename $(pwd)) -c ci/pipeline.yml -l ci/credentials.yml
 ```
