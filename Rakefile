@@ -191,14 +191,13 @@ module DockerImagePackaging
     package_dir = File.expand_path("../packages/#{name}", __FILE__)
     FileUtils.mkdir_p package_dir
     src_meta_dir = File.expand_path("../src/#{name}", __FILE__)
-    src_meta_file = File.join(src_meta_dir, 'docker_meta.txt')
-    meta_dir = File.expand_path(name, __FILE__)
-    meta_file = File.join(meta_dir, 'docker_meta.txt')
     FileUtils.mkdir_p src_meta_dir
+    puts "Src meta dir is #{src_meta_dir}"
+    meta_file = File.join(name, 'docker_meta.txt')
     files.push(meta_file)
     spec = { "name" => name, "files" => files }
     IO.write(File.join(package_dir, 'spec'), spec.to_yaml)
-    IO.write(src_meta_file, docker_tag)
+    IO.write(File.join(src_meta_dir, 'docker_meta.txt'), docker_tag)
     IO.write(File.join(package_dir, 'packaging'), packaging_script(meta_file))
   end
 
