@@ -18,3 +18,4 @@ files:
 - docker_layers/c6919336aedd7b3ea891f84310b2a3f0615eeb0210e8b506c8171e77e6fb131e.tgz
 - docker_images/7d45b016bc3a418c752e1743ffb0c0e68a2a914766a56338a3525c759c3acb05.json.tgz
 - docker_images/cfcommunity_postgresql_9_5_image.tgz
+- "/tmp/build/deac093c/boshrelease-images-updated/Rakefile/cfcommunity_postgresql_9_5_image/docker_meta.txt"
