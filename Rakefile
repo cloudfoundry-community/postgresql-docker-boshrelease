@@ -46,7 +46,7 @@ namespace :images do
           end
           required_layers << b.target
         end
-        create_package(image.package, required_blobs.map(&:package_spec_path))
+        create_package(image.package, required_blobs.map(&:package_spec_path), image.name)
       end
     end
     puts "Removing unused blobs:"
@@ -187,18 +187,27 @@ module DockerImagePackaging
     blobs.each { |b| sh "tar -zcf #{b.target} #{b.source}" }
   end
 
-  def create_package(name, files)
+  def create_package(name, files, docker_tag)
     package_dir = File.expand_path("../packages/#{name}", __FILE__)
     FileUtils.mkdir_p package_dir
+    src_meta_dir = File.expand_path("../src/#{name}", __FILE__)
+    src_meta_file = File.join(src_meta_dir, 'docker_meta.txt')
+    meta_dir = File.expand_path(name, __FILE__)
+    meta_file = File.join(meta_dir, 'docker_meta.txt')
+    FileUtils.mkdir_p src_meta_dir
+    files.push(meta_file)
     spec = { "name" => name, "files" => files }
     IO.write(File.join(package_dir, 'spec'), spec.to_yaml)
-    IO.write(File.join(package_dir, 'packaging'), packaging_script)
+    IO.write(src_meta_file, docker_tag)
+    IO.write(File.join(package_dir, 'packaging'), packaging_script(meta_file))
   end
 
-  def packaging_script
+
+  def packaging_script(docker_meta)
     <<-END.gsub(/^ {6}/, '')
       set -e; set -u
-
+  
+      cp -a #{docker_meta} $BOSH_INSTALL_TARGET
       mkdir bits
       cd bits
       for layer in ../docker_layers/*.tgz; do tar -xf "$layer"; done
