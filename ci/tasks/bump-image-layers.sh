@@ -24,8 +24,6 @@ EOF
 
 bosh -n sync blobs
 
-apt-get install tree -y
-
 rake images:cleanout
 rake images:package
 rake jobs:update_spec
