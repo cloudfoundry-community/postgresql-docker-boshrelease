@@ -1,4 +1,5 @@
 require 'yaml'
+require 'json'
 require 'fileutils'
 require 'tmpdir'
 
@@ -27,7 +28,7 @@ namespace :images do
   task :package do |_, args|
     include DockerImagePackaging
     include ImageConfig
-    
+
     # blobs might be in either/or blobs/docker_layers/* or in config/blobs.yml
     downloaded_layers = Dir["blobs/docker_layers/*"].map {|b| File.basename(b) }
     config_layers = YAML.load_file("config/blobs.yml").keys.
@@ -38,7 +39,7 @@ namespace :images do
     required_layers = []
     images.each do |image|
       Dir.mktmpdir do |dir|
-        required_blobs = repackage_image_blobs(source_image_dir(image.tar), dir)
+        required_blobs = repackage_image_blobs(source_image_dir(image.tar), dir, image.name)
 
         required_blobs.each do |b|
           unless existing_layers.include?(b.target)
@@ -164,10 +165,15 @@ module DockerImagePackaging
     end
   end
 
-  def repackage_image_blobs(image_tar, tmp_layers_dir)
+  def repackage_image_blobs(image_tar, tmp_layers_dir, image_name)
     Dir.chdir(tmp_layers_dir) do
       sh "tar -xf #{image_tar}"
       sh "tree"
+
+      # Add tagging data so the correct tag will be applied on import
+      manifest = JSON.parse(File.read("manifest.json"))
+      manifest[0]["RepoTags"] = [image_name]
+      File.write("manifest.json", JSON.dump(manifest))
 
       # Blob.new(source, target_name, prefix)
       blobs = Dir.glob("*/").map! do |d|
@@ -205,7 +211,7 @@ module DockerImagePackaging
   def packaging_script(docker_meta)
     <<-END.gsub(/^ {6}/, '')
       set -e; set -u
-  
+
       cp -a #{docker_meta} $BOSH_INSTALL_TARGET
       mkdir bits
       cd bits
