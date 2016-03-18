@@ -108,26 +108,26 @@ docker_layers/526a0a4df490ebf2dd81727e35a03830a6484766803e5d7b5bd9cbaa04c141a1.t
   sha: 2c784051ce2391c1d6187b73bbee3d3e7bdbefce
   size: 2097
 docker_images/d15215eb08e6974615028ffa1325b1e78f2c97702a5cb624ea7ff6833bebddd8.json.tgz:
-  object_id: fe975b2a-aad6-4edb-b6fd-efc8999715ae
-  sha: 620cc0614b1d03a97a1b4f1bb549a7dcf5ab3cb1
+  object_id: c24926cd-97a1-4c5c-bc01-76821d35a456
+  sha: 6dad80a18aadc383f288bfe0edf2d10b87f9fe4b
   size: 2633
 docker_images/cfcommunity_postgresql_9_3_image.tgz:
-  object_id: da85de32-4bf3-4145-9564-f72c3c734710
-  sha: 0c8aa01fb20593a5853420236ed2fdf5a324de4a
-  size: 844
+  object_id: c35f6b6a-2095-49f5-b4dc-fc1abab2b348
+  sha: c7f62afbf7ab3e9990dd8d3bd973d9744910b07c
+  size: 843
 docker_images/be015bdf2b84894e6d74ebe5fce2c92049a218a37e1fe7049a2a41fcc5f54ac9.json.tgz:
-  object_id: 2485ed1c-86b3-4c2b-9568-3a6c75c41219
-  sha: c838789be6de48ed8e1fec696eac46148b9d393f
+  object_id: e76a27eb-c02b-4613-8012-b51288edced1
+  sha: 5b6fe96490d995e6897d1cc8143c5c08b158344b
   size: 2620
 docker_images/cfcommunity_postgresql_9_4_image.tgz:
-  object_id: b5f0f274-151a-43ec-ba64-c0bb4f789de6
-  sha: 629778c7b25fcf10afeed8260f0114893bae66ea
+  object_id: 953f2340-a17b-4505-8436-f54dc7b10cc5
+  sha: 6339e5e21fdbb59b1fa4d10a1d38ea18fecf6ea3
   size: 845
 docker_images/7d45b016bc3a418c752e1743ffb0c0e68a2a914766a56338a3525c759c3acb05.json.tgz:
-  object_id: dc0d71ef-d37a-48a6-84bd-27e7173a75f4
-  sha: 41451ebb82b62b533657f307ff42dd5d552cd38a
+  object_id: 45c5f641-6b97-4fe1-b8cf-b1e5a1067d9e
+  sha: a7b0ae6a626314bad367865c164eee39ad652236
   size: 2625
 docker_images/cfcommunity_postgresql_9_5_image.tgz:
-  object_id: a0eed83d-a439-441e-8647-7770a5606bd1
-  sha: cb715820e2bd3302934e6b0f87b2b133ec7ecddd
-  size: 850
+  object_id: 5a8b8dcf-9e64-4a4e-b47c-29b2c2f33b2b
+  sha: f15c3c8abce27535e4190f52694cf590f6f87030
+  size: 849
