@@ -79,10 +79,9 @@ jobs:
     - {get: trigger-bump-layers, trigger: true}
   - task: bump-image-blob
     file: boshrelease-ci/ci/tasks/bump-image-layers.yml
-    config:
-      params:
-        aws_access_key_id: {{blobstore-aws-access}}
-        aws_secret_access_key: {{blobstore-aws-secret}}
+    params:
+      aws_access_key_id: {{blobstore-aws-access}}
+      aws_secret_access_key: {{blobstore-aws-secret}}
   - put: boshrelease
     params: {repository: boshrelease-images-updated, rebase: true}
 
@@ -96,11 +95,10 @@ jobs:
     - {get: trigger-testflight, trigger: true}
   - task: upload-dev-release
     file: boshrelease-ci/ci/tasks/upload-dev-release.yml
-    config:
-      params:
-        bosh_target: {{bosh-lite-target}}
-        bosh_username: {{bosh-lite-username}}
-        bosh_password: {{bosh-lite-password}}
+    params:
+      bosh_target: {{bosh-lite-target}}
+      bosh_username: {{bosh-lite-username}}
+      bosh_password: {{bosh-lite-password}}
 
 - name: shipit
   public: true
@@ -111,13 +109,12 @@ jobs:
     - {get: boshrelease-ci}
   - task: create-final-release
     file: boshrelease-ci/ci/tasks/create-final-release.yml
-    config:
-      params:
-        aws_access_key_id: {{blobstore-aws-access}}
-        aws_secret_access_key: {{blobstore-aws-secret}}
-        bosh_target: {{bosh-lite-target}}
-        bosh_username: {{bosh-lite-username}}
-        bosh_password: {{bosh-lite-password}}
+    params:
+      aws_access_key_id: {{blobstore-aws-access}}
+      aws_secret_access_key: {{blobstore-aws-secret}}
+      bosh_target: {{bosh-lite-target}}
+      bosh_username: {{bosh-lite-username}}
+      bosh_password: {{bosh-lite-password}}
   - put: boshrelease
     params:
       repository: final-release/boshrelease
