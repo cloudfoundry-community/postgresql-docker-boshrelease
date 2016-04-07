@@ -1,0 +1,30 @@
+---
+packages:
+- name: cfcommunity_postgresql_9_3_image
+  version: c3a8ffa69c622124e7e01f79e630cb8fd759dca3
+  fingerprint: c3a8ffa69c622124e7e01f79e630cb8fd759dca3
+  sha1: 6e8e842a34c76250946550230d94a80d3605b0db
+  dependencies: []
+- name: cfcommunity_postgresql_9_4_image
+  version: 4fa9df2fc1f1dd2c155fee4677ae159167185349
+  fingerprint: 4fa9df2fc1f1dd2c155fee4677ae159167185349
+  sha1: c57ebf838ca43ed3aed942bc6fad9450a98cee14
+  dependencies: []
+- name: cfcommunity_postgresql_9_5_image
+  version: 7688cf04da18878d5d96c847d6ff9eecda58cc68
+  fingerprint: 7688cf04da18878d5d96c847d6ff9eecda58cc68
+  sha1: 3d1bb9a994a5b292d0bda332e397038f4caf8a1f
+  dependencies: []
+jobs:
+- name: postgresql_images
+  version: ff338ad531d4dd34388621c06bd0ca49b87ddf4c
+  fingerprint: ff338ad531d4dd34388621c06bd0ca49b87ddf4c
+  sha1: 2aea12d3442cf56f5523d79c3f5f910c96e26f59
+license:
+  version: 8da6eb3df1dce64b78610e7cbaf4245d66e88f1c
+  fingerprint: 8da6eb3df1dce64b78610e7cbaf4245d66e88f1c
+  sha1: b8fe31d1c89fab9e43099c26e4e85108ddfa6643
+commit_hash: 1f37a53d
+uncommitted_changes: true
+name: postgresql-docker
+version: '5'
