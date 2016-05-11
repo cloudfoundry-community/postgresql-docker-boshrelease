@@ -1,0 +1,7 @@
+---
+meta:
+  subnets: (( merge ))
+
+networks:
+- name: postgresql_docker1
+  subnets: (( grab meta.subnets ))
