@@ -1,0 +1,26 @@
+meta:
+  persistent_disk: 40960
+
+  stemcell:
+    name: bosh-openstack-kvm-ubuntu-trusty-go_agent
+    version: latest
+
+jobs:
+  - name: postgresql_docker_z1
+    networks:
+      - name: postgresql_docker1
+    persistent_disk: (( grab meta.persistent_disk ))
+
+compilation:
+  cloud_properties:
+    instance_type: m1.small
+
+resource_pools:
+  - name: small_z1
+    cloud_properties:
+      instance_type: m1.small
+
+networks:
+- name: postgresql_docker1
+  type: manual
+  subnets: (( merge ))

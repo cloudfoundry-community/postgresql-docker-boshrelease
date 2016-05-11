@@ -15,11 +15,12 @@ if [[ "$(which spruce)X" == "X" ]]; then
 fi
 
 usage() {
-  echo "usage: ./make_manifest <aws|warden> <container|broker> <embedded|upstream>"
+  echo "usage: ./make_manifest <aws|openstack|warden> <container|broker> <embedded|upstream>"
   exit 1
 }
 
 if [ "$infrastructure" != "aws" ] && \
+   [ "$infrastructure" != "openstack" ] && \
     [ "$infrastructure" != "warden" ] ; then
   usage
 fi
@@ -52,6 +53,13 @@ fi
 if [[ $infrastructure = "aws" ]]; then
   if [[ $DIRECTOR_CPI != "aws" ]]; then
     echo "Not targeting an AWS BOSH. Please use 'bosh target' before running this script."
+    exit 1
+  fi
+fi
+
+if [[ $infrastructure = "openstack" ]]; then
+  if [[ $DIRECTOR_CPI != "openstack" ]]; then
+    echo "Not targeting an OpenStack BOSH. Please use 'bosh target' before running this script."
     exit 1
   fi
 fi
