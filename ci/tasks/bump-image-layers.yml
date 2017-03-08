@@ -11,6 +11,8 @@ inputs:
   path: images/cfcommunity_postgresql_9_4_image
 - name: docker-image-pg95
   path: images/cfcommunity_postgresql_9_5_image
+- name: docker-image-pg96
+  path: images/cfcommunity_postgresql_9_6_image
 
 outputs:
 - name: boshrelease-images-updated

@@ -1,9 +1,9 @@
 ---
 groups:
 - name: images
-  jobs: [bump-layers, testflight, shipit, image-pg93, image-pg94, image-pg95]
+  jobs: [bump-layers, testflight, shipit, image-pg93, image-pg94, image-pg95, image-pg96]
 - name: base
-  jobs: [image-pg93-base, image-pg94-base, image-pg95-base]
+  jobs: [image-pg93-base, image-pg94-base, image-pg95-base, image-pg96-base]
 - name: ci
   jobs: [build-task-image]
 jobs:
@@ -31,6 +31,14 @@ jobs:
   - put: docker-image-pg95-base
     params:
       build: boshrelease-image-pg95-base/images/postgresql95-base
+- name: image-pg96-base
+  public: true
+  serial: true
+  plan:
+  - {get: boshrelease-image-pg96-base, trigger: true}
+  - put: docker-image-pg96-base
+    params:
+      build: boshrelease-image-pg96-base/images/postgresql96-base
 
 - name: image-pg93
   public: true
@@ -65,6 +73,17 @@ jobs:
   - put: docker-image-pg95
     params:
       build: boshrelease/images/postgresql95
+- name: image-pg96
+  public: true
+  serial: true
+  plan:
+  - aggregate:
+    - {get: boshrelease}
+    - {get: docker-image-pg96-base, trigger: true}
+    - {get: boshrelease-image-pg96, trigger: true}
+  - put: docker-image-pg96
+    params:
+      build: boshrelease/images/postgresql96
 
 - name: bump-layers
   public: true
@@ -74,6 +93,7 @@ jobs:
     - {get: docker-image-pg93, passed: [image-pg93], trigger: true, params: {save: true}}
     - {get: docker-image-pg94, passed: [image-pg94], trigger: true, params: {save: true}}
     - {get: docker-image-pg95, passed: [image-pg95], trigger: true, params: {save: true}}
+    - {get: docker-image-pg96, passed: [image-pg96], trigger: true, params: {save: true}}
     - {get: boshrelease}
     - {get: boshrelease-ci}
     - {get: trigger-bump-layers, trigger: true}
@@ -191,6 +211,14 @@ resources:
     private_key: {{github-private-key}}
     paths: [images/postgresql95/*]
 
+- name: boshrelease-image-pg96
+  type: git
+  source:
+    uri: git@github.com:cloudfoundry-community/postgresql-docker-boshrelease.git
+    branch: {{pipeline-branch}}
+    private_key: {{github-private-key}}
+    paths: [images/postgresql96/*]
+
 - name: boshrelease-image-pg93-base
   type: git
   source:
@@ -214,6 +242,14 @@ resources:
     branch: {{pipeline-branch}}
     private_key: {{github-private-key}}
     paths: [images/postgresql95-base/*]
+
+- name: boshrelease-image-pg96-base
+  type: git
+  source:
+    uri: git@github.com:cloudfoundry-community/postgresql-docker-boshrelease.git
+    branch: {{pipeline-branch}}
+    private_key: {{github-private-key}}
+    paths: [images/postgresql96-base/*]
 
 - name: docker-image-pg93-base
   type: docker-image
@@ -242,6 +278,15 @@ resources:
     repository: cfcommunity/postgresql-base
     tag: "9.5"
 
+- name: docker-image-pg96-base
+  type: docker-image
+  source:
+    email: {{docker-hub-email}}
+    username: {{docker-hub-username}}
+    password: {{docker-hub-password}}
+    repository: cfcommunity/postgresql-base
+    tag: "9.6"
+
 - name: docker-image-pg93
   type: docker-image
   source:
@@ -268,6 +313,15 @@ resources:
     password: {{docker-hub-password}}
     repository: cfcommunity/postgresql
     tag: "9.5"
+
+- name: docker-image-pg96
+  type: docker-image
+  source:
+    email: {{docker-hub-email}}
+    username: {{docker-hub-username}}
+    password: {{docker-hub-password}}
+    repository: cfcommunity/postgresql
+    tag: "9.6"
 
 - name: docker-image-ci
   type: docker-image
