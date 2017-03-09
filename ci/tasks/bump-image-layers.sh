@@ -36,4 +36,5 @@ then
   git config --global user.email "drnic+bot@starkandwayne.com"
 fi
 
-git commit -a -m "updated image layers"
+git add .
+git commit -m "updated image layers"
