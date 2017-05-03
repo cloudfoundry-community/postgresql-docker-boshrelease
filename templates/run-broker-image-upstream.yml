@@ -143,7 +143,7 @@ properties:
         description: 'postgresql 9.5 (beta1) service for application development and testing'
         bindable: true
         tags:
-          - 'postgresql94'
+          - 'postgresql95'
           - 'postgresql'
           - 'syslog'
         metadata:
