@@ -1,6 +1,10 @@
 ---
 platform: linux
-image: docker:///cfcommunity/postgresql-docker-boshrelease-pipeline
+image_resource:
+  type: docker-image
+  source:
+    repository: starkandwayne/concourse
+    tag:        latest
 
 inputs:
 - {name: boshrelease}
