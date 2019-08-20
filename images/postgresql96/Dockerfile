@@ -19,3 +19,6 @@ VOLUME ["/data"]
 # jq used by backup.sh & restore.sh
 ADD http://stedolan.github.io/jq/download/linux64/jq /usr/bin/
 RUN chmod 775 /usr/bin/jq
+
+RUN echo "checkpoint_segments = 10\n\
+checkpoint_completion_target = 0.9" >> /etc/postgresql/9.6/main/postgresql.conf
